@@ -20,7 +20,8 @@ fridays = []
 
 # Initialize an empty lize to store all the final links of the magazines (musafim)
 magazines_urls = []
-addon_urls = []
+addon_urls = []  # Empty list for the addons
+magazines = {}  # Empty dictionary for the dirs that will be created
 
 
 def add_fridays():
@@ -42,14 +43,19 @@ def print_fridays():
 
 def concat_dates():
     for friday in fridays:
+        magazines[str(friday)] = ""
         mag_url = SITE_TXT + BASE_URL + str(friday) + "/"
         magazines_urls.append(mag_url)
         for addon in add_ons:
             mag_url = SITE_TXT + BASE_URL + addon + str(friday) + "/"
             addon_urls.append(mag_url)
+    print(magazines)
     # print(magazines_urls)
             
-
+def merge_urls():
+    # magazines
+    with open("Fridays.json", "w"):
+        pass
 
 
 def main():
