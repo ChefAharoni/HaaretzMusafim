@@ -1,13 +1,15 @@
 {% extends "base.html" %} {% block head %}
-  <title>Segment {{ segment }}</title>
+<title>Segment {{ segment }}</title>
+{% endblock %} {% block body %}
+<h1>Magazines in {{ segment }} - {{ segment+4 }}</h1>
 
-  {% endblock %} {% block body %}
-
-  <h1>Dates in {{ segment }} - {{ segment+4 }}</h1>
-  <ul>
-    {% for date in dates %}
-    <li><a href="{{ url_for('show_links', date=date) }}">{{ date }}</a></li>
-    {% endfor %}
-  </ul>
-  {% endblock %}
-</head>
+{% for year, year_dates in years.items() %} {% if not loop.first %}
+<hr />
+{% endif %}
+<li><strong>{{ year }}</strong></li>
+<ul>
+  {% for date in year_dates %}
+  <li><a href="{{ url_for('show_links', date=date) }}">{{ date }}</a></li>
+  {% endfor %}
+</ul>
+{% endfor %} {% endblock %}
