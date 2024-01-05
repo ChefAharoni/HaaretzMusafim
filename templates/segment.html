@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block head %}
+  <title>Segment {{ segment }}</title>
+
+  {% endblock %} {% block body %}
+
+  <h1>Dates in {{ segment }} - {{ segment+4 }}</h1>
+  <ul>
+    {% for date in dates %}
+    <li><a href="{{ url_for('show_links', date=date) }}">{{ date }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endblock %}
+</head>

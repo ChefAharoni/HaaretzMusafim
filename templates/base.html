@@ -10,6 +10,13 @@
     {% block head %} {% endblock %}
   </head>
   <body>
+    <a href="{{ url_for('index') }}" class="button">Return Home</a>
+    <button onclick="goBack()" class="button">Go Back</button>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
     {% block body %} {% endblock %}
   </body>
 </html>

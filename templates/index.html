@@ -3,10 +3,17 @@
 <title>Dates Menu</title>
 
 {% endblock %} {% block body %}
-<h1>Select a Date</h1>
+<h1>Select a Year Group</h1>
 <ul>
-  {% for date in dates %}
+  <!-- {% for date in dates %}
   <li><a href="{{ url_for('show_links', date=date) }}">{{ date }}</a></li>
+  {% endfor %} -->
+  {% for segment in segments %}
+  <li>
+    <a href="{{ url_for('show_segment', segment=segment) }}"
+      >{{ segment }} - {{ segment+4 }}</a
+    >
+  </li>
   {% endfor %}
 </ul>
 {% endblock %}
