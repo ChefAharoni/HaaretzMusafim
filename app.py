@@ -35,12 +35,6 @@ def show_segment(segment):
     return render_template("segment.html", segment=segment, dates=dates)
 
 
-# @app.route('/date/<date>')
-# def show_links(date):
-#     links = Thursdays.get(date, [])
-#     return render_template('links.html', date=date, links=links)
-
-
 @app.route("/date/<date>")
 def show_links(date):
     """
