@@ -7,8 +7,8 @@ from datetime import datetime
 app = Flask(__name__)
 
 
-with open("Fridays.json", "r") as f:
-    Fridays = json.load(f)
+with open("Thursdays.json", "r") as f:
+    Thursdays = json.load(f)
 
 
 def group_dates(data):
@@ -21,7 +21,7 @@ def group_dates(data):
     return dict(grouped)
 
 
-grouped_dates = group_dates(Fridays)
+grouped_dates = group_dates(Thursdays)
 
 
 @app.route("/")
@@ -37,7 +37,7 @@ def show_segment(segment):
 
 # @app.route('/date/<date>')
 # def show_links(date):
-#     links = Fridays.get(date, [])
+#     links = Thursdays.get(date, [])
 #     return render_template('links.html', date=date, links=links)
 
 
@@ -52,7 +52,7 @@ def show_links(date):
     Returns:
     - str: The rendered HTML template with the links for the given date.
     """
-    links = Fridays.get(
+    links = Thursdays.get(
         date, []
     )  # Get the links for the given date, or an empty list if the date is not found.
     return render_template(
