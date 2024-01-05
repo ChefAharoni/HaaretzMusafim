@@ -46,9 +46,11 @@ def concat_dates():
             GOOGLE_SEARCH_URL
             + SITE_TXT
             + BASE_URL
+            + "underthesun/"
             + str(thursday - datetime.timedelta(days=1))
             + "/"
         )
+
         this_thursday_articles.append(mag_url)
         this_thursday_articles.append(wed_mag_url)
         # magazines_urls.append(mag_url)
