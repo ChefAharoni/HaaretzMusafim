@@ -43,23 +43,21 @@ def print_fridays():
 
 def concat_dates():
     for friday in fridays:
-        this_friday_articles = []
-        this_friday_articles.append(
-            "magazine/"
-        )  # Perhaps change this to BASE_URL, depends on how final result will act.
+        this_friday_articles = (
+            []
+        )  # Saving as a list so values can be appended and added to each key of a Friday
         mag_url = SITE_TXT + BASE_URL + str(friday) + "/"
-        magazines_urls.append(mag_url)
+        this_friday_articles.append(mag_url)
+        # magazines_urls.append(mag_url)
         for addon in add_ons:
             mag_url = SITE_TXT + BASE_URL + addon + str(friday) + "/"
-            this_friday_articles.append(addon)
-            addon_urls.append(mag_url)
+            this_friday_articles.append(mag_url)
+            # addon_urls.append(mag_url)
         magazines[str(friday)] = this_friday_articles
-    # print(magazines)
-    # print(magazines_urls)
 
 
 def merge_urls():
-    # magazines
+    # Saves the magazines dictionary into a JSON file called "Fridays.json".
     with open("Fridays.json", "w") as file:
         json.dump(magazines, file, indent=4)
 
