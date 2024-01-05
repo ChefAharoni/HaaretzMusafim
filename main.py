@@ -42,7 +42,15 @@ def concat_dates():
             []
         )  # Saving as a list so values can be appended and added to each key of a thursday
         mag_url = GOOGLE_SEARCH_URL + SITE_TXT + BASE_URL + str(thursday) + "/"
+        wed_mag_url = (
+            GOOGLE_SEARCH_URL
+            + SITE_TXT
+            + BASE_URL
+            + str(thursday - datetime.timedelta(days=1))
+            + "/"
+        )
         this_thursday_articles.append(mag_url)
+        this_thursday_articles.append(wed_mag_url)
         # magazines_urls.append(mag_url)
         for addon in add_ons:
             mag_url = (
