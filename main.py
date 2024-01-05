@@ -36,13 +36,6 @@ def add_thursdays():
             thursdays.append(date)
 
 
-def print_thursdays():
-    # Print the list of thursday dates
-    print("thursdays:")
-    for thursday in thursdays:
-        print(thursday)
-
-
 def concat_dates():
     for thursday in thursdays:
         this_thursday_articles = (
