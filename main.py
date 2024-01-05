@@ -6,7 +6,7 @@ BASE_URL = (
     "https://www.haaretz.co.il/magazine/"  # Starter of every musaf (magazine) url
 )
 
-# List of add-ons to the base url 
+# List of add-ons to the base url
 add_ons = ["famous/", "ayelet-shani/"]
 
 # Get today's date
@@ -34,8 +34,8 @@ def add_fridays():
             fridays.append(date)
 
 
-# Print the list of Friday dates
 def print_fridays():
+    # Print the list of Friday dates
     print("Fridays:")
     for friday in fridays:
         print(friday)
@@ -43,24 +43,31 @@ def print_fridays():
 
 def concat_dates():
     for friday in fridays:
-        magazines[str(friday)] = ""
+        this_friday_articles = []
+        this_friday_articles.append(
+            "magazine/"
+        )  # Perhaps change this to BASE_URL, depends on how final result will act.
         mag_url = SITE_TXT + BASE_URL + str(friday) + "/"
         magazines_urls.append(mag_url)
         for addon in add_ons:
             mag_url = SITE_TXT + BASE_URL + addon + str(friday) + "/"
+            this_friday_articles.append(addon)
             addon_urls.append(mag_url)
-    print(magazines)
+        magazines[str(friday)] = this_friday_articles
+    # print(magazines)
     # print(magazines_urls)
-            
+
+
 def merge_urls():
     # magazines
-    with open("Fridays.json", "w"):
-        pass
+    with open("Fridays.json", "w") as file:
+        json.dump(magazines, file, indent=4)
 
 
 def main():
     add_fridays()
     concat_dates()
+    merge_urls()
 
 
 if __name__ == "__main__":
