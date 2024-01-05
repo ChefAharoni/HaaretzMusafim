@@ -6,7 +6,7 @@
 {% for year, year_dates in years.items() %} {% if not loop.first %}
 <hr />
 {% endif %}
-<li><strong>{{ year }}</strong></li>
+<h2>{{ year }}</h2>
 <ul>
   {% for date in year_dates %}
   <li><a href="{{ url_for('show_links', date=date) }}">{{ date }}</a></li>

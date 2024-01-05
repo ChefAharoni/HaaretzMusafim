@@ -26,28 +26,12 @@ def group_dates(data):
     return dict(grouped)
 
 
-# def group_dates(data):
-#     # Group dates into five-year segments
-#     grouped = defaultdict(list)
-#     for date in data:
-#         year = datetime.strptime(date, "%Y-%m-%d").year
-#         segment = 5 * (year // 5)  # Grouping by every 5 years
-#         grouped[segment].append(date)
-#     return dict(grouped)
-
-
 grouped_dates = group_dates(Thursdays)
 
 
 @app.route("/")
 def index():
     return render_template("index.html", segments=grouped_dates.keys())
-
-
-# @app.route("/segment/<int:segment>")
-# def show_segment(segment):
-#     dates = grouped_dates.get(segment, [])
-#     return render_template("segment.html", segment=segment, dates=dates)
 
 
 @app.route("/segment/<int:segment>")
