@@ -1,6 +1,8 @@
 import datetime
 import json
 
+
+GOOGLE_SEARCH_URL = "https://www.google.com/search?q="
 SITE_TXT = "site:"  # To access the site
 BASE_URL = (
     "https://www.haaretz.co.il/magazine/"  # Starter of every musaf (magazine) url
@@ -46,11 +48,13 @@ def concat_dates():
         this_friday_articles = (
             []
         )  # Saving as a list so values can be appended and added to each key of a Friday
-        mag_url = SITE_TXT + BASE_URL + str(friday) + "/"
+        mag_url = GOOGLE_SEARCH_URL + SITE_TXT + BASE_URL + str(friday) + "/"
         this_friday_articles.append(mag_url)
         # magazines_urls.append(mag_url)
         for addon in add_ons:
-            mag_url = SITE_TXT + BASE_URL + addon + str(friday) + "/"
+            mag_url = (
+                GOOGLE_SEARCH_URL + SITE_TXT + BASE_URL + addon + str(friday) + "/"
+            )
             this_friday_articles.append(mag_url)
             # addon_urls.append(mag_url)
         magazines[str(friday)] = this_friday_articles
