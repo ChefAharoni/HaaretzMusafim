@@ -1,8 +1,12 @@
 {% extends 'base.html' %} {% block head %}
 
-<title>Home</title>
+<title>Dates Menu</title>
 
 {% endblock %} {% block body %}
-<h1>Home</h1>
-<h2>Test Home Page</h2>
+<h1>Select a Date</h1>
+<ul>
+  {% for date in dates %}
+  <li><a href="{{ url_for('show_links', date=date) }}">{{ date }}</a></li>
+  {% endfor %}
+</ul>
 {% endblock %}

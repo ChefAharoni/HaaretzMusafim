@@ -1,18 +1,22 @@
-from flask import Flask, request, render_template, url_for
+from flask import Flask, request, render_template, url_for, jsonify
 import json
 
 app = Flask(__name__)
 
 
-@app.route("/{friday}", methods=["GET"])
-def open_url():
-    with open("Fridays.json", "r") as file:
-        fridays = json.load(file)
+with open("Fridays.json", "r") as f:
+    Fridays = json.load(f)
 
 
 @app.route("/")
-def hello_world():
-    return render_template("index.html")
+def index():
+    return render_template("index.html", dates=Fridays.keys())
+
+
+@app.route("/date/<date>")
+def show_links(date):
+    links = Fridays.get(date, [])
+    return render_template("links.html", date=date, links=links)
 
 
 if __name__ == "__main__":
