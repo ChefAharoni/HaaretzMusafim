@@ -1,10 +1,12 @@
 import datetime
+import json
 
 SITE_TXT = "site:"  # To access the site
 BASE_URL = (
     "https://www.haaretz.co.il/magazine/"  # Starter of every musaf (magazine) url
 )
 
+# List of add-ons to the base url 
 add_ons = ["famous/", "ayelet-shani/"]
 
 # Get today's date
@@ -18,6 +20,7 @@ fridays = []
 
 # Initialize an empty lize to store all the final links of the magazines (musafim)
 magazines_urls = []
+addon_urls = []
 
 
 def add_fridays():
@@ -41,7 +44,12 @@ def concat_dates():
     for friday in fridays:
         mag_url = SITE_TXT + BASE_URL + str(friday) + "/"
         magazines_urls.append(mag_url)
-    print(magazines_urls)
+        for addon in add_ons:
+            mag_url = SITE_TXT + BASE_URL + addon + str(friday) + "/"
+            addon_urls.append(mag_url)
+    # print(magazines_urls)
+            
+
 
 
 def main():
