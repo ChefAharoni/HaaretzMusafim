@@ -20,10 +20,8 @@ start_date = TODAY - datetime.timedelta(days=365 * 20)
 # Initialize an empty list to store the thursday dates
 thursdays = []
 
-# Initialize an empty lize to store all the final links of the magazines (musafim)
-# magazines_urls = []
-# addon_urls = []  # Empty list for the addons
-magazines = {}  # Empty dictionary for the dirs that will be created
+# Empty dictionary for the magazines; key is the date and value is a list of URLs
+magazines = {}
 
 
 def add_thursdays():
@@ -56,11 +54,9 @@ def concat_dates():
         this_thursday_articles.append(wed_mag_url)
         this_thursday_articles.append(tue_mag_url)
         this_thursday_articles.append(wed_underthesun_mag_url)
-        # magazines_urls.append(mag_url)
         for addon in add_ons:
             mag_url = url_prefix + addon + str(thursday) + "/"
             this_thursday_articles.append(mag_url)
-            # addon_urls.append(mag_url)
         magazines[str(thursday)] = this_thursday_articles
 
 
