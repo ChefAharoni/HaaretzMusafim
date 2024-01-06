@@ -9,7 +9,7 @@ BASE_URL = (
 )
 
 # List of add-ons to the base url
-add_ons = ["famous/", "ayelet-shani/"]
+add_ons = ["famous/", "ayelet-shani/", "20questions/", "ratingcommittee/", "blacklist/"]
 
 # Get today's date
 TODAY = datetime.date.today()
@@ -37,23 +37,23 @@ def add_thursdays():
 def concat_dates():
     url_prefix = GOOGLE_SEARCH_URL + SITE_TXT + BASE_URL
     for thursday in thursdays:
+        wed_suffix = str(thursday - datetime.timedelta(days=1)) + "/"
         this_thursday_articles = (
             []
         )  # Saving as a list so values can be appended and added to each key of a thursday
         mag_url = url_prefix + str(thursday) + "/"
         wed_mag_url = url_prefix + str(thursday - datetime.timedelta(days=1)) + "/"
         tue_mag_url = url_prefix + str(thursday - datetime.timedelta(days=2)) + "/"
-        wed_underthesun_mag_url = (
-            url_prefix
-            + "underthesun/"
-            + str(thursday - datetime.timedelta(days=1))
-            + "/"
-        )
+        wed_underthesun_mag_url = url_prefix + "underthesun/" + wed_suffix
+        quote_mag_url = url_prefix + "quote/" + wed_suffix
+        the_edge_mag_url = url_prefix + "the-edge/" + wed_suffix
 
         this_thursday_articles.append(mag_url)
         this_thursday_articles.append(wed_mag_url)
         this_thursday_articles.append(tue_mag_url)
         this_thursday_articles.append(wed_underthesun_mag_url)
+        this_thursday_articles.append(quote_mag_url)
+        this_thursday_articles.append(the_edge_mag_url)
         for addon in add_ons:
             mag_url = url_prefix + addon + str(thursday) + "/"
             this_thursday_articles.append(mag_url)
