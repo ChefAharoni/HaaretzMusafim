@@ -1,6 +1,6 @@
 <!-- Sample structure for links.html -->
 {% extends "base.html" %} {% block body %}
-<h1>Links for {{ date }}</h1>
+<h1>לינקים לתאריך: {{ date }}</h1>
 <ul>
   {% for link in links %}
   <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>
