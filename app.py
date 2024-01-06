@@ -48,30 +48,12 @@ def show_segment(segment):
     return render_template("segment.html", segment=segment, years=years)
 
 
-# @app.route("/date/<date>")
-# def show_links(date):
-#     """
-#     Display the links for a given date.
-
-#     Parameters:
-#     - date (str): The date for which to display the links.
-
-#     Returns:
-#     - str: The rendered HTML template with the links for the given date.
-#     """
-#     links = Thursdays.get(
-#         date, []
-#     )  # Get the links for the given date, or an empty list if the date is not found.
-#     return render_template(
-#         "links.html", date=date, links=links
-#     )  # Render the template with the links.
-
-
 @app.route("/date/<date>")
 def show_links(date):
     google_links = Thursdays.get(date, [])
     actual_links = []
     for google_link in google_links:
+        print(f"Fetching URLs from: {google_link}")  # Debugging print statement
         fetched_urls = fetch.fetch_actual_urls(google_link)
         actual_links.extend(fetched_urls)
 

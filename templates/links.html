@@ -1,10 +1,9 @@
-{% extends "base.html" %} {% block head %}
-<title>Links for {{ date }}</title>
-{% endblock %} {% block body %}
+<!-- Sample structure for links.html -->
+{% extends "base.html" %} {% block body %}
 <h1>Links for {{ date }}</h1>
 <ul>
   {% for link in links %}
-  <li><a href="{{ link }}">{{ link }}</a></li>
+  <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>
   {% endfor %}
 </ul>
 {% endblock %}

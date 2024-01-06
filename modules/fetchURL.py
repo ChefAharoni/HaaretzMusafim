@@ -2,18 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.parse
 
-# List of domains to exclude
-excluded_domains = [
-    "https://accounts.google",
-    "https://maps.google",
-    "https://support.google",
-]
-
 
 def fetch_actual_urls(google_search_url):
     headers = {"User-Agent": "Mozilla/5.0"}
     response = requests.get(google_search_url, headers=headers)
-
+    print(f"Response Status: {response.status_code}")  # Check response status
     soup = BeautifulSoup(response.content, "html.parser")
 
     actual_urls = []
@@ -23,9 +16,9 @@ def fetch_actual_urls(google_search_url):
             # Extract and clean the URL
             clean_url = href.split("/url?q=")[1].split("&")[0]
             clean_url = urllib.parse.unquote(clean_url)
-
-            # Filter out URLs from excluded domains
-            if not any(domain in clean_url for domain in excluded_domains):
+            print(clean_url)
+            # Include only URLs that start with "haaretz"
+            if clean_url.startswith("https://www.haaretz.co.il"):
                 actual_urls.append(clean_url)
 
     return actual_urls
