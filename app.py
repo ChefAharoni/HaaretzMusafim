@@ -7,8 +7,8 @@ import subprocess
 import hmac
 import hashlib
 import os
-from dotenv import load_dotenv
-from git import Repo
+# from dotenv import load_dotenv
+# from git import Repo
 
 
 app = Flask(__name__)

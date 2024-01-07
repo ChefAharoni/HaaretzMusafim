@@ -6,13 +6,12 @@ import os
 
 # all_urls = {}  # Empty dictionary to store all URLs
 date_urls = {}
+PROXIES = {"http": "", "https": ""}
 
 
 def fetch_actual_urls(google_search_url):
     headers = {"User-Agent": "Mozilla/5.0"}
-    response = requests.get(
-        google_search_url, headers=headers, proxies={"http": "", "https": ""}
-    )
+    response = requests.get(google_search_url, headers=headers, proxies=PROXIES)
     print(f"Response Status: {response.status_code}")  # Check response status
     soup = BeautifulSoup(response.content, "html.parser")
 
@@ -35,7 +34,7 @@ def fetch_actual_urls(google_search_url):
 
 
 def get_title(url):
-    response = requests.get(url)
+    response = requests.get(url, proxies=PROXIES)
     soup = BeautifulSoup(response.content, "html.parser")
     title = soup.find("title").text
     print(f"Title: {title}")
