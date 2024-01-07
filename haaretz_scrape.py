@@ -33,7 +33,8 @@ def fetch_urls():
     """
     # sitemap = open_sitemap_json()
     sitemap = fetch_sitemap()
-    mag_urls = open_mag_urls_json()
+    # mag_urls = open_mag_urls_json()
+    mag_urls = open_json("data/haaretz_sitemap.json")
     for month in sitemap:
         if month in mag_urls.keys():
             print(f"Skipping: {month}")
@@ -49,9 +50,40 @@ def fetch_urls():
                 print(f"URL: {url}")
                 site_relevant_urls.append(url)
         mag_urls[month] = site_relevant_urls
-    save_mag_urls_json(mag_urls)
+    # save_mag_urls_json(mag_urls)
+    save_json("data/mag_urls.json", mag_urls)
     group_dates()
     return mag_urls
+
+
+def add_titles():
+    grouped_articles = open_json("data/grouped_articles.json")
+    clean_urls = {}
+    for month in grouped_articles:
+        for date in grouped_articles[month]:
+            for url in grouped_articles[month][date]:
+                # if grouped_articles[month][date][url] == "":
+                print(f"Fetching titles for: {date}")
+                title = get_title(url)
+                # grouped_articles[month][date][url] = title
+                clean_urls[url] = title
+        save_json("data/clean_urls.json", clean_urls)
+    print(clean_urls)
+    # title = get_title(url)
+    # grouped_articles[date][url] = title
+
+
+def get_title(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, "html.parser")
+    title = soup.find("title")
+    if title == "":
+        return None
+    else:
+        title = title.text
+        print(f"Title: {title}")
+        print(f"URL: {url}")
+        return title    
 
 
 def print_urls():
@@ -71,23 +103,33 @@ def fetch_months():
     return articles
 
 
-def open_sitemap_json():
-    with open("data/haaretz_sitemap.json", "r") as file:
-        sitemap = json.load(file)
-    # print(sitemap)
+# def open_sitemap_json():
+#     with open("data/haaretz_sitemap.json", "r") as file:
+#         sitemap = json.load(file)
 
 
-def open_mag_urls_json():
-    with open("data/mag_urls.json", "r") as file:
-        mag_urls = json.load(file)
-    return mag_urls
+# def open_mag_urls_json():
+#     with open("data/mag_urls.json", "r") as file:
+#         mag_urls = json.load(file)
+#     return mag_urls
 
 
-def save_mag_urls_json(dict):
-    with open("data/mag_urls.json", "w") as file:
+def open_json(fname):
+    with open(fname, "r") as file:
+        j_dict = json.load(file)
+    return j_dict
+
+
+def save_json(fname, dict):
+    with open(fname, "w") as file:
         json.dump(dict, file, indent=4)
 
 
-if __name__ == "__main__":
-    fetch_urls()
+# def save_mag_urls_json(dict):
+#     with open("data/mag_urls.json", "w") as file:
+#         json.dump(dict, file, indent=4)
 
+
+if __name__ == "__main__":
+    # fetch_urls()
+    add_titles()
