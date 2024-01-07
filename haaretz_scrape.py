@@ -22,7 +22,7 @@ def save_sitemap_to_json():
     Saves the Haaretz sitemap to a JSON file.
     """
     sitemap = fetch_sitemap()
-    with open("haaretz_sitemap.json", "w") as file:
+    with open("data/haaretz_sitemap.json", "w") as file:
         json.dump(sitemap, file, indent=4)
 
 
@@ -70,19 +70,19 @@ def fetch_months():
 
 
 def open_sitemap_json():
-    with open("haaretz_sitemap.json", "r") as file:
+    with open("data/haaretz_sitemap.json", "r") as file:
         sitemap = json.load(file)
     # print(sitemap)
 
 
 def open_mag_urls_json():
-    with open("mag_urls.json", "r") as file:
+    with open("data/mag_urls.json", "r") as file:
         mag_urls = json.load(file)
     return mag_urls
 
 
 def save_mag_urls_json(dict):
-    with open("mag_urls.json", "w") as file:
+    with open("data/mag_urls.json", "w") as file:
         json.dump(dict, file, indent=4)
 
 

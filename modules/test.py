@@ -1,5 +1,5 @@
 import json
-import fetchURL as fetch
+import modules.old.fetchURL as fetch
 import datetime
 
 
