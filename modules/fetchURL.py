@@ -10,7 +10,9 @@ date_urls = {}
 
 def fetch_actual_urls(google_search_url):
     headers = {"User-Agent": "Mozilla/5.0"}
-    response = requests.get(google_search_url, headers=headers)
+    response = requests.get(
+        google_search_url, headers=headers, proxies={"http": "", "https": ""}
+    )
     print(f"Response Status: {response.status_code}")  # Check response status
     soup = BeautifulSoup(response.content, "html.parser")
 

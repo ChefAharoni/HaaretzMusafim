@@ -10,13 +10,9 @@
 </div>
 <div class="links">
   <ul>
-    <!-- {% for link in links %}
-  <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>
-  {% endfor %} -->
-    {% for c_date in all_urls.keys() %} {% if c_date == date %} {% for url in
-    all_urls[date] %}
-    <li><a href="{{ url }}" target="_blank">{{ all_urls[date][url] }}</a></li>
-    {% endfor %} {% endif %} {% endfor %}
+    {% for url in titles_urls %}
+    <li><a href="{{ url }}" target="_blank">{{ titles_urls[url] }}</a></li>
+    {% endfor %}
   </ul>
 </div>
 {% endblock %}

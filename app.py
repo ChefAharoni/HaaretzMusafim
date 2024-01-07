@@ -59,19 +59,20 @@ def show_links(date):
     # Check if the date is in the all_urls.json file
     if fetch.check_date(date):
         all_urls = fetch.open_json("all_urls.json")
+        # titles_urls = all_urls[date]  # Avoids calling all dates in html
     # If the date is not in the all_urls.json file, fetch the URLs from Google
     else:
         google_links = Thursdays.get(date, [])
-        actual_links = []
         all_urls = fetch.open_json("all_urls.json")
         for google_link in google_links:
             print(f"Fetching URLs from: {google_link}")  # Debugging print statement
-            fetched_urls = fetch.fetch_actual_urls(google_link)
-            # actual_links.extend(fetched_urls)
+            fetch.fetch_actual_urls(
+                google_link
+            )  # Fetches the URLs from Google, saves them to date_urls
 
         fetch.save_all_urls_json(date=date)
         all_urls = fetch.open_json("all_urls.json")
-    return render_template("links.html", date=date, all_urls=all_urls)
+    return render_template("links.html", date=date, titles_urls=all_urls[date])
 
 
 @app.context_processor
@@ -84,6 +85,7 @@ def inject_segments():
     return {"segments": grouped_dates.keys()}
 
 
+# Trying to make a route that updates the server when a push is made to GitHub
 # @app.route('/update_server', methods=['POST'])
 #     def webhook():
 #         if request.method == 'POST':
@@ -94,42 +96,42 @@ def inject_segments():
 #         else:
 #             return 'Wrong event type', 400
 
-load_dotenv()  # This loads the .env file
+# load_dotenv()  # This loads the .env file
 
-# Access your variable
-# GITHUB_SECRET = os.getenv("GITHUB_SECRET")
-GITHUB_WEBHOOK_ROUTE = "/server_update"
-GITHUB_SECRET = bytes(os.getenv("GITHUB_SECRET"), "utf-8")
+# # Access your variable
+# # GITHUB_SECRET = os.getenv("GITHUB_SECRET")
+# GITHUB_WEBHOOK_ROUTE = "/server_update"
+# GITHUB_SECRET = bytes(os.getenv("GITHUB_SECRET"), "utf-8")
 
 
-@app.route(GITHUB_WEBHOOK_ROUTE, methods=["POST"])
-def github_webhook():
-    # Verify the request signature
-    signature = request.headers.get("X-Hub-Signature")
-    if signature is None:
-        abort(403)
+# @app.route(GITHUB_WEBHOOK_ROUTE, methods=["POST"])
+# def github_webhook():
+#     # Verify the request signature
+#     signature = request.headers.get("X-Hub-Signature")
+#     if signature is None:
+#         abort(403)
 
-    sha_name, signature = signature.split("=")
-    if sha_name != "sha1":
-        abort(501)
+#     sha_name, signature = signature.split("=")
+#     if sha_name != "sha1":
+#         abort(501)
 
-    mac = hmac.new(GITHUB_SECRET, msg=request.data, digestmod=hashlib.sha1)
-    if not hmac.compare_digest(mac.hexdigest(), signature):
-        abort(403)
+#     mac = hmac.new(GITHUB_SECRET, msg=request.data, digestmod=hashlib.sha1)
+#     if not hmac.compare_digest(mac.hexdigest(), signature):
+#         abort(403)
 
-    # If the signature is valid, pull the latest changes
-    subprocess.call(["git", "pull"])
-    if request.method == "POST":
-        repo = Repo("https://github.com/ChefAharoni/HaaretzMusafim")
-        origin = repo.remotes.origin
-        origin.pull()
-        # Restart the server (this is a placeholder, replace with your server's restart command)
-        os.system("restart server_command")
-        return "Updated and restarted PythonAnywhere successfully", 200
-    # Add any other commands you need to run after pulling changes, such as restarting your server
-    # subprocess.call(['touch', '/var/www/html/myapp.wsgi'])
+#     # If the signature is valid, pull the latest changes
+#     subprocess.call(["git", "pull"])
+#     if request.method == "POST":
+#         repo = Repo("https://github.com/ChefAharoni/HaaretzMusafim")
+#         origin = repo.remotes.origin
+#         origin.pull()
+#         # Restart the server (this is a placeholder, replace with your server's restart command)
+#         os.system("restart server_command")
+#         return "Updated and restarted PythonAnywhere successfully", 200
+#     # Add any other commands you need to run after pulling changes, such as restarting your server
+#     # subprocess.call(['touch', '/var/www/html/myapp.wsgi'])
 
-    return "Updated PythonAnywhere successfully", 200
+#     return "Updated PythonAnywhere successfully", 200
 
 
 if __name__ == "__main__":
