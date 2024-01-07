@@ -58,32 +58,39 @@ def fetch_urls():
 
 def add_titles():
     grouped_articles = open_json("data/grouped_articles.json")
-    clean_urls = {}
-    for month in grouped_articles:
-        for date in grouped_articles[month]:
-            for url in grouped_articles[month][date]:
-                # if grouped_articles[month][date][url] == "":
-                print(f"Fetching titles for: {date}")
+    titled_urls = open_json("data/titled_urls.json")  # Load existing titled URLs
+
+    for month, dates in grouped_articles.items():
+        titled_urls[month] = {}
+        for date, urls in dates.items():
+            if month in titled_urls and date in titled_urls[month]:
+                print(f"Skipping already processed date: {date} in {month}")
+                continue
+
+            # titled_urls[month][date] = {}
+            # checks if a specified key exists in the dictionary. If the key is found, it returns the value associated with that key. If the key is not found, it adds the key with a default value.
+            titled_urls.setdefault(month, {})[date] = {}
+            print(f"Fetching titles for: {date}")
+            for url in urls:
                 title = get_title(url)
-                # grouped_articles[month][date][url] = title
-                clean_urls[url] = title
-        save_json("data/clean_urls.json", clean_urls)
-    print(clean_urls)
-    # title = get_title(url)
-    # grouped_articles[date][url] = title
+                titled_urls[month][date][url] = title if title else "No title found"
+            print(f"Processed {date} for {month}")
+
+        save_json("data/titled_urls.json", titled_urls)
+    print("Titles added and saved.")
 
 
 def get_title(url):
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, "html.parser")
-    title = soup.find("title")
-    if title == "":
-        return None
-    else:
-        title = title.text
+    try:
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, "html.parser")
+        title = soup.find("title").text
         print(f"Title: {title}")
         print(f"URL: {url}")
-        return title    
+    except Exception as e:
+        print(f"Error fetching title for {url}: {e}")
+        title = None
+    return title
 
 
 def print_urls():
