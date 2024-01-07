@@ -85,10 +85,12 @@ def get_title(url):
         response = requests.get(url)
         soup = BeautifulSoup(response.content, "html.parser")
         title = soup.find("title").text
+        print(f"Response: {response}")
         print(f"Title: {title}")
         print(f"URL: {url}")
     except Exception as e:
         print(f"Error fetching title for {url}: {e}")
+        print(f"Response: {response}")
         title = None
     return title
 
