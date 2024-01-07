@@ -86,11 +86,6 @@ def save_mag_urls_json(dict):
         json.dump(dict, file, indent=4)
 
 
-# print(fetch_months())
-# print_urls()
-# print_sitemap()
 if __name__ == "__main__":
     fetch_urls()
-    # sitemap = fetch_sitemap()
-    # for l in sitemap:
-    #     print(l)
+
