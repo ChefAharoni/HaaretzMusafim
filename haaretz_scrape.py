@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+from modules import group_dates
 
 
 HAARETZ_SITEMAP = "https://www.haaretz.co.il/sitemap.xml"
@@ -49,6 +50,7 @@ def fetch_urls():
                 site_relevant_urls.append(url)
         mag_urls[month] = site_relevant_urls
     save_mag_urls_json(mag_urls)
+    group_dates()
     return mag_urls
 
 
