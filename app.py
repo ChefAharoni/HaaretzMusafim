@@ -52,20 +52,22 @@ def show_segment(segment):
 def show_links(date):
     google_links = Thursdays.get(date, [])
     actual_links = []
+    all_urls = fetch.open_json("all_urls.json")
     for google_link in google_links:
         print(f"Fetching URLs from: {google_link}")  # Debugging print statement
         fetched_urls = fetch.fetch_actual_urls(google_link)
         actual_links.extend(fetched_urls)
 
-    return render_template("links.html", date=date, links=actual_links)
+    fetch.save_all_urls_json(date=date)
+    return render_template(
+        "links.html", date=date, links=actual_links, all_urls=all_urls
+    )
 
 
 @app.context_processor
 def inject_segments():
     """
-    Injects segments into the response dictionary.
-
-    This function is responsible for injecting segments into the response dictionary. Segments are pieces of data that need to be included in the response sent back to the user. By calling this function, you can add segments to the response dictionary, ensuring that they are included in the final response.
+    Injects segments into the response dictionary. This way, the grouped dates are available in every template.
     Returns:
         A dictionary containing the segments.
     """

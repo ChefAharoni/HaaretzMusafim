@@ -1,9 +1,28 @@
 <!-- Sample structure for links.html -->
 {% extends "base.html" %} {% block body %}
-<h1>לינקים לתאריך: {{ date }}</h1>
-<ul>
-  {% for link in links %}
+<h1 class="date_header">לינקים לתאריך: {{ date }}</h1>
+<div class="upper_notes">
+  <p>
+    <strong>הערה:</strong>
+    כל הלינקים מובילים לאתר הארץ. כדי לקרוא את המוסף המלא, יש להתחבר לאתר הארץ
+    עם המנוי האישי.
+  </p>
+</div>
+<div class="links">
+  <ul>
+    <!-- {% for link in links %}
   <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>
-  {% endfor %}
-</ul>
+  {% endfor %} -->
+    {% for c_date in all_urls.keys() %} {% if c_date == date %} {% for url in
+    all_urls[date] %}
+    <li><a href="{{ url }}" target="_blank">{{ all_urls[date][url] }}</a></li>
+    {% endfor %} {% endif %} {% endfor %}
+  </ul>
+</div>
 {% endblock %}
+
+<!-- 
+        for url in all_urls[date]:
+        print(url)
+        print(all_urls[date][url])
+ -->

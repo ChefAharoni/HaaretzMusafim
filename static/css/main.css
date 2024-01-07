@@ -114,6 +114,29 @@ a:hover, .navbar ul li a:hover {
     color: #0056b3; /* Darker shade of accent color */
 }
 
+/* When showing the actual links with the titles */
+.links {
+    display: flex;
+    justify-content: space-between;
+    align-items: right;
+    text-align: right;
+    direction: rtl;
+    margin-top: 10px;
+}
+
+.upper_notes {
+    direction: rtl;
+    text-align: right;
+    align-items: center;
+}
+
+
+.date_header {
+    direction: rtl;
+    text-align: center;
+    align-items: center;
+    margin-top: 10px;
+}
 /* article {
     margin-bottom: 20px;
 }
