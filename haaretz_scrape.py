@@ -34,6 +34,9 @@ def fetch_urls():
     sitemap = fetch_sitemap()
     mag_urls = open_mag_urls_json()
     for month in sitemap:
+        if month in mag_urls.keys():
+            print(f"Skipping: {month}")
+            continue
         response = requests.get(month)
         print(f"Fetching URLs from: {month}")
         print(f"Response: {response}")
@@ -41,12 +44,11 @@ def fetch_urls():
         urls = [loc.text for loc in soup.find_all("loc")]
         site_relevant_urls = []
         for url in urls:
-            # print(f"URL: {url}")
             if url.startswith("https://www.haaretz.co.il/magazine/"):
                 print(f"URL: {url}")
                 site_relevant_urls.append(url)
         mag_urls[month] = site_relevant_urls
-        save_mag_urls_json(mag_urls)
+    save_mag_urls_json(mag_urls)
     return mag_urls
 
 
