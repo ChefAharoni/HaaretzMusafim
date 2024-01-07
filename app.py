@@ -60,5 +60,10 @@ def show_links(date):
     return render_template("links.html", date=date, links=actual_links)
 
 
+@app.context_processor
+def inject_segments():
+    return {"segments": grouped_dates.keys()}
+
+
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

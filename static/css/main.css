@@ -3,6 +3,7 @@ h1, h2, h3, .button, body {
     cursor: default;
     font-family: "Open Sans Hebrew","Helvetica Neue",tahoma,Helvetica,Arial,sans-serif;
     color: #2596be;
+    background-color: #f4f4f4;
 }
 
 
@@ -20,6 +21,11 @@ h1, h2, h3, .button, body {
     border: none;
     border-radius: 5px;
     box-shadow: 0 9px #999;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
 }
 
 .button:hover {background-color: #3e8e41}
@@ -29,3 +35,67 @@ h1, h2, h3, .button, body {
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
+
+a, .accent-color {
+    color: #007bff; /* Accent color */
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+.navbar ul li {
+    margin: 0 15px;
+}
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* article {
+    margin-bottom: 20px;
+}
+article h1, article h2, article h3 {
+    color: #333;
+}
+article p {
+    line-height: 1.6;
+} */
+
+a:hover, .navbar ul li a:hover {
+    color: #0056b3; /* Darker shade of accent color */
+}
+
+/* img {
+    max-width: 100%;
+    height: auto;
+} */
+
+

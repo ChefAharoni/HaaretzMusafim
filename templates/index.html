@@ -1,12 +1,16 @@
-{% extends 'base.html' %} {% block head %} {% endblock %} {% block body %}
-<h1>Select a Year Group</h1>
-<ul>
-  {% for segment in segments | reverse %}
-  <li>
-    <a href="{{ url_for('show_segment', segment=segment) }}"
-      >{{ segment }} - {{ segment+4 }}</a
-    >
-  </li>
-  {% endfor %}
-</ul>
+{% extends 'base.html' %} {% block head %}
+<!-- Additional head content can be added here if needed -->
+{% endblock %} {% block body %}
+<div class="container">
+  <h1>Select a Year Group</h1>
+  <ul>
+    {% for segment in segments | reverse %}
+    <li>
+      <a href="{{ url_for('show_segment', segment=segment) }}"
+        >{{ segment }} - {{ segment+4 }}</a
+      >
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}

@@ -18,6 +18,32 @@
         window.history.back();
       }
     </script>
+    <nav class="navbar">
+      <ul>
+        {% for segment in segments %}
+        <li>
+          <a href="{{ url_for('show_segment', segment=segment) }}"
+            >{{ segment }} - {{ segment+4 }}</a
+          >
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
     {% block body %} {% endblock %}
+    <footer>
+      <p>
+        <strong>Disclaimer:</strong> This archive is independently created and
+        is not affiliated with Haaretz. It is intended solely for organizing and
+        facilitating access to publicly available web pages of the weekend
+        magazines. <br />
+        Accessing full content of these magazines still requires a valid
+        subscription to Haaretz. This archive does not host or reproduce Haaretz
+        content illegally.
+      </p>
+      <p>&copy; 2024 ChefAharoni. All rights reserved.</p>
+      <p><a href="mailto:ChefAharoni@proton.me">Contact Us</a></p>
+
+      <!-- <p><a href="privacy-policy-link">Privacy Policy</a></p> -->
+    </footer>
   </body>
 </html>
