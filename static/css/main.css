@@ -6,7 +6,7 @@ h1, h2, h3, .button, body {
     background-color: #272727;
 }
 
-
+/* Button used in return home and go back */
 .button {
     font-family: "Open Sans Hebrew", "Helvetica Neue", Tahoma, Helvetica, Arial, sans-serif;
     padding: 10px 15px;
@@ -32,7 +32,6 @@ h1, h2, h3, .button, body {
     transform: translateY(2px);
 }
 
-
 a, .accent-color {
     color: #007bff; /* Accent color */
 }
@@ -45,12 +44,33 @@ a, .accent-color {
     gap: 20px;
 }
 
-.intro {
+.segment {
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.segment h1, h2, h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.segment h2 {
+    font-size: 2em;
+}
+
+.segment li{
+    margin-bottom: 5px;
+}
+
+/* In index.html - introduction to the archive website. */
+.intro p {
     text-align: right;
     direction: rtl;
     grid-column: span 3;
     margin-right: 10%;
     margin-left: 10%;
+    font-size: 20px;
 }
 
 .intro h1 {
@@ -59,11 +79,6 @@ a, .accent-color {
     text-align: center;
 }
 
-@media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-}
 
 .navbar {
     background-color: #333;
@@ -87,12 +102,16 @@ a, .accent-color {
     padding: 10px 15px; /* Add some padding for better appearance */
 }
 
-
 footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 20px 0;
+    margin-top: 20%;
+}
+
+a:hover, .navbar ul li a:hover {
+    color: #0056b3; /* Darker shade of accent color */
 }
 
 /* article {
@@ -105,13 +124,16 @@ article p {
     line-height: 1.6;
 } */
 
-a:hover, .navbar ul li a:hover {
-    color: #0056b3; /* Darker shade of accent color */
-}
+
 
 /* img {
     max-width: 100%;
     height: auto;
 } */
 
+/* @media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+} */
 

@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block head %}
 <title>מקבץ {{ segment }}</title>
 {% endblock %} {% block body %}
-<div>
+<div class="segment">
   <h1>מוספים ב {{ segment }} - {{ segment+4 }}</h1>
 
   {% for year, year_dates in years.items() | reverse %} {% if not loop.first %}

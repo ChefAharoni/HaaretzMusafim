@@ -12,24 +12,27 @@
   </head>
   <nav class="navbar">
     <div>
-        <ul>
-            {% for segment in segments %}
-            <li><a href="{{ url_for('show_segment', segment=segment) }}">{{ segment }} - {{ segment+4 }}</a></li>
-            {% endfor %}
-        </ul>
+      <ul>
+        {% for segment in segments %}
+        <li>
+          <a href="{{ url_for('show_segment', segment=segment) }}"
+            >{{ segment }} - {{ segment+4 }}</a
+          >
+        </li>
+        {% endfor %}
+      </ul>
     </div>
     <div>
       <button onclick="goBack()" class="button">חזרה אחורה</button>
-        <a href="{{ url_for('index') }}" class="button">לעמוד הראשי</a>
+      <a href="{{ url_for('index') }}" class="button">לעמוד הראשי</a>
     </div>
-</nav>
-
-
-  <script>
-    function goBack() {
-      window.history.back();
-    }
-  </script>
+  </nav>
+  <body>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
     {% block body %} {% endblock %}
     <footer>
       <p>
@@ -58,8 +61,6 @@
           GitHub Repo
         </a>
       </p>
-
-      <!-- <p><a href="privacy-policy-link">Privacy Policy</a></p> -->
     </footer>
   </body>
 </html>
