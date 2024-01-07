@@ -62,6 +62,13 @@ def show_links(date):
 
 @app.context_processor
 def inject_segments():
+    """
+    Injects segments into the response dictionary.
+
+    This function is responsible for injecting segments into the response dictionary. Segments are pieces of data that need to be included in the response sent back to the user. By calling this function, you can add segments to the response dictionary, ensuring that they are included in the final response.
+    Returns:
+        A dictionary containing the segments.
+    """
     return {"segments": grouped_dates.keys()}
 
 
