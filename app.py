@@ -3,6 +3,7 @@ from collections import defaultdict
 import json
 from datetime import datetime
 from modules import fetchURL as fetch
+import time
 
 
 app = Flask(__name__)
@@ -50,18 +51,22 @@ def show_segment(segment):
 
 @app.route("/date/<date>")
 def show_links(date):
-    google_links = Thursdays.get(date, [])
-    actual_links = []
-    all_urls = fetch.open_json("all_urls.json")
-    for google_link in google_links:
-        print(f"Fetching URLs from: {google_link}")  # Debugging print statement
-        fetched_urls = fetch.fetch_actual_urls(google_link)
-        actual_links.extend(fetched_urls)
+    # Check if the date is in the all_urls.json file
+    if fetch.check_date(date):
+        all_urls = fetch.open_json("all_urls.json")
+    # If the date is not in the all_urls.json file, fetch the URLs from Google
+    else:
+        google_links = Thursdays.get(date, [])
+        actual_links = []
+        all_urls = fetch.open_json("all_urls.json")
+        for google_link in google_links:
+            print(f"Fetching URLs from: {google_link}")  # Debugging print statement
+            fetched_urls = fetch.fetch_actual_urls(google_link)
+            # actual_links.extend(fetched_urls)
 
-    fetch.save_all_urls_json(date=date)
-    return render_template(
-        "links.html", date=date, links=actual_links, all_urls=all_urls
-    )
+        fetch.save_all_urls_json(date=date)
+        all_urls = fetch.open_json("all_urls.json")
+    return render_template("links.html", date=date, all_urls=all_urls)
 
 
 @app.context_processor

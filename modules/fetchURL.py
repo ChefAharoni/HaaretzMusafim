@@ -45,15 +45,20 @@ def save_all_urls_json(date, dict=date_urls, fname="all_urls.json"):
     # Saves a dictionary into a JSON file.
     all_urls = open_json(fname=fname)
     all_urls[date] = dict
-    if os.path.exists(fname):  # If the file already exists, append to it
-        with open(fname, "w") as file:
-            json.dump(all_urls, file, indent=4)
-    else:  # If the file doesn't exist, create it
-        with open(fname, "w") as file:
-            json.dump(all_urls, file, indent=4)
+
+    with open(fname, "w") as file:
+        json.dump(all_urls, file, indent=4)
 
 
 def open_json(fname):
     # Opens a JSON file and returns a dictionary.
     with open(fname, "r") as file:
         return json.load(file)
+
+
+def check_date(date):
+    all_urls = open_json("all_urls.json")
+    if date in all_urls.keys() and all_urls[date] != {}:
+        return True
+    else:
+        return False
