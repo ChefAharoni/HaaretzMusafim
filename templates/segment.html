@@ -2,7 +2,7 @@
 <title>מקבץ {{ segment }}</title>
 {% endblock %} {% block body %}
 <div>
-  <h1>Magazines in {{ segment }} - {{ segment+4 }}</h1>
+  <h1>מוספים ב {{ segment }} - {{ segment+4 }}</h1>
 
   {% for year, year_dates in years.items() | reverse %} {% if not loop.first %}
   <hr />

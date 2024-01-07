@@ -1,7 +1,16 @@
-{% extends 'base.html' %} {% block head %}
-<!-- Additional head content can be added here if needed -->
-{% endblock %} {% block body %}
-<div class="container">
+{% extends 'base.html' %} {% block head %} {% endblock %} {% block body %}
+<div class="intro">
+  <h1>ארכיון מוספי הארץ</h1>
+</div>
+
+<div class="intro">
+  <p>
+    אתר זה מהווה שער לארכיון מוספי הארץ. משתמשים יכולים לבחור קבוצת שנים ולאחר
+    מכן לבחור בשנה הרצויה כדי לגשת למאמרים ותכנים שונים. המטרה היא לארגן את
+    המוספים בצורה נוחה ונגישה לגולש, תוך שמירה על ממשק משתמש פשוט ונקי.
+  </p>
+</div>
+<!-- <div class="container">
   <h1>Select a Year Group</h1>
   <ul>
     {% for segment in segments | reverse %}
@@ -12,5 +21,5 @@
     </li>
     {% endfor %}
   </ul>
-</div>
+</div> -->
 {% endblock %}

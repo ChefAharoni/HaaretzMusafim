@@ -10,25 +10,26 @@
     <title>ארכיון מוספי הארץ</title>
     {% block head %} {% endblock %}
   </head>
-  <body>
-    <a href="{{ url_for('index') }}" class="button">Return Home</a>
-    <button onclick="goBack()" class="button">Go Back</button>
-    <script>
-      function goBack() {
-        window.history.back();
-      }
-    </script>
-    <nav class="navbar">
-      <ul>
-        {% for segment in segments %}
-        <li>
-          <a href="{{ url_for('show_segment', segment=segment) }}"
-            >{{ segment }} - {{ segment+4 }}</a
-          >
-        </li>
-        {% endfor %}
-      </ul>
-    </nav>
+  <nav class="navbar">
+    <div>
+        <ul>
+            {% for segment in segments %}
+            <li><a href="{{ url_for('show_segment', segment=segment) }}">{{ segment }} - {{ segment+4 }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+      <button onclick="goBack()" class="button">חזרה אחורה</button>
+        <a href="{{ url_for('index') }}" class="button">לעמוד הראשי</a>
+    </div>
+</nav>
+
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
     {% block body %} {% endblock %}
     <footer>
       <p>
