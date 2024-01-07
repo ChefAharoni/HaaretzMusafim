@@ -6,6 +6,10 @@ h1, h2, h3, .button, body {
     background-color: #272727;
 }
 
+.year_header {
+    color: #1c799a;
+}
+
 /* Button used in return home and go back */
 .button {
     font-family: "Open Sans Hebrew", "Helvetica Neue", Tahoma, Helvetica, Arial, sans-serif;

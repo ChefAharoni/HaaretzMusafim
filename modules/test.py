@@ -1,5 +1,6 @@
 import json
 import fetchURL as fetch
+import datetime
 
 
 def open_json(fname):
@@ -35,11 +36,38 @@ def show_links(date):
     return titles_urls
 
 
-titles_urls = show_links("2023-12-28")
-for url in titles_urls:
-    print(f"URL: {url}")
-    print(f"Title: {titles_urls[url]}")
+def print_title_url(date):
+    titles_urls = show_links(date)
+    for url in titles_urls:
+        print(f"URL: {url}")
+        print(f"Title: {titles_urls[url]}")
 
+
+def date_range(date):
+    date = datetime.datetime.strptime(date, "%Y-%m-%d")
+    thursday = datetime.date(date.year, date.month, date.day)
+    wed_date = str(thursday - datetime.timedelta(days=1))
+    tue_date = str(thursday - datetime.timedelta(days=2))
+    return [str(thursday), wed_date, tue_date]
+
+
+def add_thursdays():
+    TODAY = datetime.date.today()
+    start_date = TODAY - datetime.timedelta(days=365 * 2)
+    thursdays = []
+
+    # Iterate over each date from the start date to today
+    for date in (
+        start_date + datetime.timedelta(n) for n in range((TODAY - start_date).days)
+    ):
+        # Check if the date is a thursday
+        if date.weekday() == 3:  # 3 represents Thursday (Monday is 0 and Sunday is 6)
+            thursdays.append(date)
+    return thursdays
+
+
+# print(add_thursdays())
+print(date_range("2024-01-04"))
 
 # print(check_date("2023-12-28"))
 # print(check_date("2023-12-20"))

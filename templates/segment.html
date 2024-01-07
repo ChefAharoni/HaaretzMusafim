@@ -7,7 +7,7 @@
   {% for year, year_dates in years.items() | reverse %} {% if not loop.first %}
   <hr />
   {% endif %}
-  <h2>{{ year }}</h2>
+  <h2 class="year_header">{{ year }}</h2>
   <ul>
     {% for date in year_dates | reverse %}
     <li><a href="{{ url_for('show_links', date=date) }}">{{ date }}</a></li>

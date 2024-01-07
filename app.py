@@ -7,6 +7,7 @@ import subprocess
 import hmac
 import hashlib
 import os
+
 # from dotenv import load_dotenv
 # from git import Repo
 
@@ -64,11 +65,11 @@ def show_links(date):
     else:
         google_links = Thursdays.get(date, [])
         all_urls = fetch.open_json("all_urls.json")
+        print(f"Fetching for: {date}")
         for google_link in google_links:
             print(f"Fetching URLs from: {google_link}")  # Debugging print statement
-            fetch.fetch_actual_urls(
-                google_link
-            )  # Fetches the URLs from Google, saves them to date_urls
+            # Fetches the URLs from Google, saves them to date_urls and to all_urls
+            fetch.fetch_actual_urls(google_link, date=date)
 
         fetch.save_all_urls_json(date=date)
         all_urls = fetch.open_json("all_urls.json")
