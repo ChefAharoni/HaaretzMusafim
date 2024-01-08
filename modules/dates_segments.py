@@ -3,24 +3,18 @@ from datetime import datetime
 from collections import defaultdict
 
 
-def get_sitemap():
-    with open("data/haaretz_sitemap.json", "r") as f:
+def get_articles():
+    with open("data/grouped_articles.json", "r") as f:
         return json.load(f)
 
 
 def get_dates():
-    sitemap = get_sitemap()
-    clean_dates = []
-    for url in sitemap:
-        if "latest" in url:
-            continue
-        date = url.split("-")[-1]
-        date = date.split(".")[0]
-        year = date[0:4]
-        month = date[4:]
-        clean_date = year + "-" + month
-        clean_dates.append(clean_date)
-    return clean_dates
+    articles = get_articles()
+    l_weekends = []
+    for months, weekends in articles.items():
+        for weekend in weekends:
+            l_weekends.append(weekend)
+    return l_weekends
 
 
 def group_dates():
@@ -28,7 +22,7 @@ def group_dates():
     grouped = defaultdict(list)
     clean_dates = get_dates()
     for date in clean_dates:
-        year = datetime.strptime(date, "%Y-%m").year
+        year = datetime.strptime(date, "%Y-%m-%d").year
         segment = 5 * (year // 5)  # Grouping by every 5 years
         grouped[segment].append(date)
 
@@ -40,5 +34,6 @@ def group_dates():
 
 
 if __name__ == "__main__":
-    # print(group_dates())
-    group_dates()
+    print(group_dates())
+    # group_dates()
+    # get_dates()

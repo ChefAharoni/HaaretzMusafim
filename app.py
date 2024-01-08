@@ -16,9 +16,6 @@ import os
 app = Flask(__name__)
 
 
-grouped_dates = dates_segments.group_dates()
-
-
 @app.route("/")
 def index():
     return render_template("index.html", segments=grouped_dates.keys())
@@ -39,23 +36,25 @@ def show_segment(segment):
 
 @app.route("/date/<date>")
 def show_links(date):
-    # Check if the date is in the all_urls.json file
-    if fetch.check_date(date):
-        all_urls = fetch.open_json("all_urls.json")
-        # titles_urls = all_urls[date]  # Avoids calling all dates in html
-    # If the date is not in the all_urls.json file, fetch the URLs from Google
-    else:
-        google_links = Thursdays.get(date, [])
-        all_urls = fetch.open_json("all_urls.json")
-        print(f"Fetching for: {date}")
-        for google_link in google_links:
-            print(f"Fetching URLs from: {google_link}")  # Debugging print statement
-            # Fetches the URLs from Google, saves them to date_urls and to all_urls
-            fetch.fetch_actual_urls(google_link, date=date)
+    print(f"Date: {date}")
 
-        fetch.save_all_urls_json(date=date)
-        all_urls = fetch.open_json("all_urls.json")
-    return render_template("links.html", date=date, titles_urls=all_urls[date])
+
+# def show_links_old(date):
+#     # Check if the date is in the all_urls.json file
+#     if fetch.check_date(date):
+#         all_urls = fetch.open_json("all_urls.json")
+#     # If the date is not in the all_urls.json file, fetch the URLs from Google
+#     else:
+#         google_links = Thursdays.get(date, [])
+#         all_urls = fetch.open_json("all_urls.json")
+#         print(f"Fetching for: {date}")
+#         for google_link in google_links:
+#             print(f"Fetching URLs from: {google_link}")  # Debugging print statement
+#             fetch.fetch_actual_urls(google_link, date=date)
+
+#         fetch.save_all_urls_json(date=date)
+#         all_urls = fetch.open_json("all_urls.json")
+#     return render_template("links.html", date=date, titles_urls=all_urls[date])
 
 
 @app.context_processor
@@ -69,4 +68,5 @@ def inject_segments():
 
 
 if __name__ == "__main__":
+    grouped_dates = dates_segments.group_dates()
     app.run(port=5000, debug=True)
