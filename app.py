@@ -16,6 +16,9 @@ def index():
 
 @app.route("/segment/<int:segment>")
 def show_segment(segment):
+    print(
+        f"Type of segment: {type(segment)}"
+    )  # Used only to check the type of url, delete after hint is added
     dates = grouped_dates.get(segment, [])
 
     # Group dates by year

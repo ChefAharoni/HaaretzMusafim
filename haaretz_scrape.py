@@ -77,6 +77,10 @@ def add_titles():
 
 
 def get_title(url):
+    # TODO - Add a typehint to url and return; add docs
+    print(
+        f"Type of url: {type(url)}"
+    )  # Used only to check the type of url, delete after hint is added
     try:
         response = requests.get(url)
         soup = BeautifulSoup(response.content, "html.parser")
@@ -88,6 +92,9 @@ def get_title(url):
         print(f"Error fetching title for {url}: {e}")
         print(f"Response: {response}")
         title = None
+    print(
+        f"Title type: {type(title)}"
+    )  # Used only to check the type of url, delete after hint is added
     return title
 
 
