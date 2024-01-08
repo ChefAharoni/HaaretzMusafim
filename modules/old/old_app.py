@@ -3,7 +3,6 @@ from collections import defaultdict
 import json
 from datetime import datetime
 from modules.old import fetchURL as fetch
-from modules import dates_segments
 import subprocess
 import hmac
 import hashlib
@@ -16,7 +15,30 @@ import os
 app = Flask(__name__)
 
 
-grouped_dates = dates_segments.group_dates()
+with open("modules/old/Thursdays.json", "r") as f:
+    Thursdays = json.load(f)
+
+
+def group_dates(data):
+    # Group dates into five-year segments
+    grouped = defaultdict(list)
+    for date in data:
+        print(f"Date: {date}")
+        print(f"Type of date: {type(date)}")
+        year = datetime.strptime(date, "%Y-%m-%d").year
+        segment = 5 * (year // 5)  # Grouping by every 5 years
+        print(f"Segment: {segment}")
+        grouped[segment].append(date)
+
+    # Sort dates within each segment
+    for segment in grouped:
+        grouped[segment].sort()
+
+    return dict(grouped)
+
+
+grouped_dates = group_dates(Thursdays)
+# print(grouped_dates)
 
 
 @app.route("/")
