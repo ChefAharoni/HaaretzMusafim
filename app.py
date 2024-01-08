@@ -40,6 +40,7 @@ def show_links(date: str):
             if date in dates:
                 print(f"Chosen date: {date}")
                 weekend_urls = titled_urls[months][dates]
+    print(f"Weekend URLs: {weekend_urls}")
     return render_template("links.html", date=date, weekend_urls=weekend_urls)
 
 

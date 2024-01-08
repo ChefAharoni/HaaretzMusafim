@@ -8,6 +8,7 @@
     עם המנוי האישי.
   </p>
 </div>
+{% if weekend_urls != {} %}
 <div class="links">
   <ul>
     {% for url in weekend_urls %}
@@ -17,7 +18,11 @@
     {% endfor %}
   </ul>
 </div>
-{% endblock %}
+{% else %}
+<div class="error_message">
+  <h3>מצטערים, לא הצלחנו להביא לינקים ליום זה.</h3>
+</div>
+{% endif %} {% endblock %}
 
 <!-- 
     <ul>
