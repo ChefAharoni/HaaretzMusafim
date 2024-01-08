@@ -5,7 +5,6 @@ from modules import group_dates
 
 
 HAARETZ_SITEMAP = "https://www.haaretz.co.il/sitemap.xml"
-# HAARETZ_SITEMAP = "https://www.haaretz.co.il/sitemap-202401.xml"
 
 
 def fetch_sitemap():
@@ -31,9 +30,7 @@ def fetch_urls():
     """
     Fetches the Haaretz sitemap and returns a list of URLs.
     """
-    # sitemap = open_sitemap_json()
     sitemap = fetch_sitemap()
-    # mag_urls = open_mag_urls_json()
     mag_urls = open_json("data/haaretz_sitemap.json")
     for month in sitemap:
         if month in mag_urls.keys():
@@ -50,7 +47,6 @@ def fetch_urls():
                 print(f"URL: {url}")
                 site_relevant_urls.append(url)
         mag_urls[month] = site_relevant_urls
-    # save_mag_urls_json(mag_urls)
     save_json("data/mag_urls.json", mag_urls)
     group_dates.main()
     return mag_urls
@@ -112,17 +108,6 @@ def fetch_months():
     return articles
 
 
-# def open_sitemap_json():
-#     with open("data/haaretz_sitemap.json", "r") as file:
-#         sitemap = json.load(file)
-
-
-# def open_mag_urls_json():
-#     with open("data/mag_urls.json", "r") as file:
-#         mag_urls = json.load(file)
-#     return mag_urls
-
-
 def open_json(fname: str) -> dict:
     with open(fname, "r") as file:
         j_dict = json.load(file)
@@ -132,11 +117,6 @@ def open_json(fname: str) -> dict:
 def save_json(fname: str, dict: dict) -> None:
     with open(fname, "w") as file:
         json.dump(dict, file, indent=4)
-
-
-# def save_mag_urls_json(dict):
-#     with open("data/mag_urls.json", "w") as file:
-#         json.dump(dict, file, indent=4)
 
 
 if __name__ == "__main__":

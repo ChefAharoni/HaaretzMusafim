@@ -6,10 +6,6 @@ from modules.old import fetchURL as fetch
 from modules import dates_segments
 import haaretz_scrape
 
-# from dotenv import load_dotenv
-# from git import Repo
-
-
 app = Flask(__name__)
 
 
