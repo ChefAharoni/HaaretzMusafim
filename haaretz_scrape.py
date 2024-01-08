@@ -52,7 +52,7 @@ def fetch_urls():
         mag_urls[month] = site_relevant_urls
     # save_mag_urls_json(mag_urls)
     save_json("data/mag_urls.json", mag_urls)
-    group_dates()
+    group_dates.main()
     return mag_urls
 
 
