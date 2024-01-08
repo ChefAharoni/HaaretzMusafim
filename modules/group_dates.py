@@ -27,15 +27,20 @@ def group_articles_by_weekend(articles):
     return grouped_articles
 
 
-# Load your existing JSON
-with open("data/mag_urls.json", "r") as file:
-    data = json.load(file)
+def main():
+    # Load your existing JSON
+    with open("data/mag_urls.json", "r") as file:
+        data = json.load(file)
 
-# Process each month
-for month, articles in data.items():
-    grouped_articles = group_articles_by_weekend(articles)
-    data[month] = grouped_articles
+    # Process each month
+    for month, articles in data.items():
+        grouped_articles = group_articles_by_weekend(articles)
+        data[month] = grouped_articles
 
-# Save the new JSON structure
-with open("data/grouped_articles.json", "w") as file:
-    json.dump(data, file, indent=4)
+    # Save the new JSON structure
+    with open("data/grouped_articles.json", "w") as file:
+        json.dump(data, file, indent=4)
+
+
+if __name__ == "__main__":
+    main()
