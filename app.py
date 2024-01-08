@@ -37,7 +37,8 @@ def show_segment(segment, year):
 
 @app.route("/date/<date>")
 def show_links(date: str):
-    titled_urls = haaretz_scrape.open_json("data/titled_urls.json")
+    titled_urls = haaretz_scrape.open_json("data/titled_urls.json")  # With titles
+    only_urls = open_links(date)
     weekend_urls = {}
     print(f"Type: {type(date)}")
     for months in titled_urls:
@@ -46,7 +47,19 @@ def show_links(date: str):
                 print(f"Chosen date: {date}")
                 weekend_urls = titled_urls[months][dates]
     print(f"Weekend URLs: {weekend_urls}")
-    return render_template("links.html", date=date, weekend_urls=weekend_urls)
+    return render_template(
+        "links.html", date=date, weekend_urls=weekend_urls, only_urls=only_urls
+    )
+
+
+def open_links(date: str) -> list:
+    grouped_articles = haaretz_scrape.open_json("data/grouped_articles.json")
+    only_urls = []
+    for url in grouped_articles:
+        for weekend in grouped_articles[url]:
+            if weekend == date:
+                only_urls = grouped_articles[url][date]
+                return only_urls
 
 
 @app.context_processor

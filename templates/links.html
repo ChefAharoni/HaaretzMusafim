@@ -18,6 +18,19 @@
     {% endfor %}
   </ul>
 </div>
+{% elif only_urls != [] %}
+<h4 class="upper_notes">
+  בזמן שאנחנו עובדים על השגת הכותרות, מוזמנים להסתכל על הלינקים:
+</h4>
+<div class="links">
+  <ul>
+    {% for url in only_urls %}
+    <li>
+      <a href="{{ url }}" target="_blank">{{ url }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% else %}
 <div class="error_message">
   <h3>מצטערים, לא הצלחנו להביא לינקים ליום זה.</h3>

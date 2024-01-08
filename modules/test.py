@@ -1,77 +1,27 @@
-import json
-import re
-from collections import defaultdict
-from datetime import datetime, timedelta
+import os
+import sys
 
+# Get the directory of your script
+script_dir = os.path.dirname(__file__)
 
-def parse_date_from_url(url):
-    """Extracts the date from the given URL."""
-    match = re.search(r"\d{4}-\d{2}-\d{2}", url)
-    if match:
-        return datetime.strptime(match.group(), "%Y-%m-%d")
-    return None
+# Get the parent directory
+parent_dir = os.path.dirname(script_dir)
 
+# Add the parent directory to sys.path
+sys.path.append(parent_dir)
 
-def get_weekend(date):
-    """Returns the weekend date (Saturday) for the given date."""
-    return date + timedelta(days=(5 - date.weekday()))
+# Now you can import the module in the parent directory
+import haaretz_scrape
 
+def test_open_links(date):
+    grouped_articles = haaretz_scrape.open_json("data/grouped_articles.json")
+    only_urls = []
+    for url in grouped_articles:
+        for weekend in grouped_articles[url]:
+            if weekend == date:
+                print(f"Date: {date}")
+                print(f"URL: {grouped_articles[url][date]}")
+                only_urls = grouped_articles[url][date]
+                return only_urls
 
-def get_weekends(articles):
-    weekends = defaultdict(list)
-    for article in articles:
-        date = parse_date_from_url(article)
-        print(f"Date: {date}")
-        if date:
-            weekend = get_weekend(date)
-            weekend = weekend.strftime("%Y-%m-%d")
-    print(f"Weekends: {weekends}")
-    return weekends
-
-
-def group_dates(data):
-    # Group dates into five-year segments
-    grouped = defaultdict(list)
-    for date in data:
-        year = datetime.strptime(date, "%Y-%m-%d").year
-        segment = 5 * (year // 5)  # Grouping by every 5 years
-        grouped[segment].append(date)
-
-    # Sort dates within each segment
-    for segment in grouped:
-        grouped[segment].sort()
-
-    return dict(grouped)
-
-
-def main():
-    # Load your existing JSON
-    with open("data/mag_urls.json", "r") as file:
-        data = json.load(file)
-
-    # Process each month
-    for month, articles in data.items():
-        # print(f"Month: {month}")
-        grouped_articles = get_weekend(articles)
-        # data[month] = grouped_articles
-        # print(data[month])
-        # print(f"Month: {month}")
-
-    # Save the new JSON structure
-    with open("data/date_segments.json", "w") as file:
-        json.dump(data, file, indent=4)
-
-
-def open_json(fname: str) -> dict:
-    with open(fname, "r") as file:
-        j_dict = json.load(file)
-    return j_dict
-
-
-if __name__ == "__main__":
-    # main()
-    titled_urls = open_json("data/titled_urls.json")
-    for weekends in titled_urls:
-        for url in weekends:
-            print(f"URL: {url}")
-            # print(f"Title: {titled_urls[url]}")
+test_open_links("2020-01-04")
