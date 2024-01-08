@@ -10,15 +10,21 @@
 </div>
 <div class="links">
   <ul>
-    {% for url in titles_urls %}
-    <li><a href="{{ url }}" target="_blank">{{ titles_urls[url] }}</a></li>
+    {% for url in weekend_urls %}
+    <li>
+      <a href="{{ url }}" target="_blank">{{ weekend_urls[url] }}</a>
+    </li>
     {% endfor %}
   </ul>
 </div>
 {% endblock %}
 
 <!-- 
-        for url in all_urls[date]:
-        print(url)
-        print(all_urls[date][url])
+    <ul>
+    {% for month in titled_urls %} {% for date in titled_urls[month] %} {% for
+    url in titled_urls[month][date] %}
+    <li>
+      <a href="{{ url }}" target="_blank">{{ titled_urls[month][date][url] }}</a>
+    </li>
+    {% endfor %} {%endfor %} {%endfor%}
  -->

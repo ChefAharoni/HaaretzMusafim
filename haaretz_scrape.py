@@ -123,13 +123,13 @@ def fetch_months():
 #     return mag_urls
 
 
-def open_json(fname):
+def open_json(fname: str) -> dict:
     with open(fname, "r") as file:
         j_dict = json.load(file)
     return j_dict
 
 
-def save_json(fname, dict):
+def save_json(fname: str, dict: dict) -> None:
     with open(fname, "w") as file:
         json.dump(dict, file, indent=4)
 

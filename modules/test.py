@@ -62,5 +62,16 @@ def main():
         json.dump(data, file, indent=4)
 
 
+def open_json(fname: str) -> dict:
+    with open(fname, "r") as file:
+        j_dict = json.load(file)
+    return j_dict
+
+
 if __name__ == "__main__":
-    main()
+    # main()
+    titled_urls = open_json("data/titled_urls.json")
+    for weekends in titled_urls:
+        for url in weekends:
+            print(f"URL: {url}")
+            # print(f"Title: {titled_urls[url]}")

@@ -4,10 +4,7 @@ import json
 from datetime import datetime
 from modules.old import fetchURL as fetch
 from modules import dates_segments
-import subprocess
-import hmac
-import hashlib
-import os
+import haaretz_scrape
 
 # from dotenv import load_dotenv
 # from git import Repo
@@ -35,26 +32,16 @@ def show_segment(segment):
 
 
 @app.route("/date/<date>")
-def show_links(date):
-    print(f"Date: {date}")
-
-
-# def show_links_old(date):
-#     # Check if the date is in the all_urls.json file
-#     if fetch.check_date(date):
-#         all_urls = fetch.open_json("all_urls.json")
-#     # If the date is not in the all_urls.json file, fetch the URLs from Google
-#     else:
-#         google_links = Thursdays.get(date, [])
-#         all_urls = fetch.open_json("all_urls.json")
-#         print(f"Fetching for: {date}")
-#         for google_link in google_links:
-#             print(f"Fetching URLs from: {google_link}")  # Debugging print statement
-#             fetch.fetch_actual_urls(google_link, date=date)
-
-#         fetch.save_all_urls_json(date=date)
-#         all_urls = fetch.open_json("all_urls.json")
-#     return render_template("links.html", date=date, titles_urls=all_urls[date])
+def show_links(date: str):
+    titled_urls = haaretz_scrape.open_json("data/titled_urls.json")
+    weekend_urls = {}
+    print(f"Type: {type(date)}")
+    for months in titled_urls:
+        for dates in titled_urls[months]:
+            if date in dates:
+                print(f"Chosen date: {date}")
+                weekend_urls = titled_urls[months][dates]
+    return render_template("links.html", date=date, weekend_urls=weekend_urls)
 
 
 @app.context_processor
