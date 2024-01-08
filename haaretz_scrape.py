@@ -111,6 +111,7 @@ def get_title(url: str) -> str:
         print(f"Title: {title}")
         print(f"URL: {url}")
     except Exception as e:
+        response = requests.get(url)
         print(f"Error fetching title for {url}: {e}")
         print(f"Response: {response}")
         title = None
