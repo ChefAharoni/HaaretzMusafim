@@ -141,6 +141,13 @@ a:hover, .navbar ul li a:hover {
     align-items: center;
     margin-top: 10px;
 }
+
+.error_message {
+    direction: rtl;
+    text-align: center;
+    color: red;
+    margin-top: 5%;
+}
 /* article {
     margin-bottom: 20px;
 }
