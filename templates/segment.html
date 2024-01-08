@@ -7,13 +7,37 @@
   {% for year, year_dates in years.items() | reverse %} {% if not loop.first %}
   <hr />
   {% endif %}
-  <h2 class="year_header">{{ year }}</h2>
+  <h2 class="year_header" id="{{ year }}">{{ year }}</h2>
   <ul>
     {% for date in year_dates | reverse %}
     <li><a href="{{ url_for('show_links', date=date) }}">{{ date }}</a></li>
     {% endfor %}
   </ul>
-
   {% endfor %}
 </div>
+<script>
+  window.onload = function () {
+    var scrollToYear = "{{ scroll_to_year }}";
+    if (scrollToYear) {
+      var element = document.getElementById("year" + scrollToYear);
+      if (element) {
+        element.scrollIntoView();
+      }
+    }
+  };
+</script>
+
 {% endblock %}
+
+<!-- <script>
+  window.onload = function() {
+    {% if scroll_to_year %}
+    var year = "{{ scroll_to_year }}";
+    var element = document.getElementById("year" + year);
+    if (element) {
+      element.scrollIntoView();
+    }
+    {% endif %}
+  };
+</script>
+ -->

@@ -8,26 +8,31 @@ import haaretz_scrape
 
 app = Flask(__name__)
 
+grouped_dates = dates_segments.group_dates()
+
 
 @app.route("/")
 def index():
     return render_template("index.html", segments=grouped_dates.keys())
 
 
-@app.route("/segment/<int:segment>")
-def show_segment(segment):
-    print(
-        f"Type of segment: {type(segment)}"
-    )  # Used only to check the type of url, delete after hint is added
+@app.route("/segment/<int:segment>", defaults={"year": None})
+@app.route("/segment/<int:segment>/<int:year>")
+def show_segment(segment, year):
     dates = grouped_dates.get(segment, [])
-
-    # Group dates by year
     years = defaultdict(list)
-    for date in dates:
-        year = date.split("-")[0]
-        years[year].append(date)
 
-    return render_template("segment.html", segment=segment, years=years)
+    for date in dates:
+        year_extracted = int(date.split("-")[0])
+        years[year_extracted].append(date)
+
+    if year is not None:
+        # If a specific year is provided, filter dates to only include that year
+        years = {year: years[year]}
+
+    return render_template(
+        "segment.html", segment=segment, years=years, scroll_to_year=year
+    )
 
 
 @app.route("/date/<date>")
@@ -47,13 +52,20 @@ def show_links(date: str):
 @app.context_processor
 def inject_segments():
     """
-    Injects segments into the response dictionary. This way, the grouped dates are available in every template.
+    Injects segments and segment years into the response dictionary.
+    This way, the grouped dates and years are available in every template.
     Returns:
-        A dictionary containing the segments.
+        A dictionary containing the segments and segment years.
     """
-    return {"segments": grouped_dates.keys()}
+    segment_years = defaultdict(list)
+    for segment, dates in grouped_dates.items():
+        for date in dates:
+            year = date.split("-")[0]
+            segment_years[segment].append(year)
+        segment_years[segment] = sorted(list(set(segment_years[segment])))
+
+    return {"segments": grouped_dates.keys(), "segment_years": segment_years}
 
 
 if __name__ == "__main__":
-    grouped_dates = dates_segments.group_dates()
     app.run(port=5000, debug=True)

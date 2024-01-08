@@ -91,6 +91,9 @@ a, .accent-color {
     display: flex; /* Enable Flexbox */
     justify-content: space-between; /* Space between navbar items */
     align-items: center; /* Align items vertically */
+    position: sticky; 
+    top: 0;
+    z-index: 1000; /* Ensures navbar stays on top */
 }
 
 .navbar ul {
@@ -104,6 +107,38 @@ a, .accent-color {
     color: white;
     text-decoration: none;
     padding: 10px 15px; /* Add some padding for better appearance */
+    position: relative; /* Position the li element relative to its normal position */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition effect */
+}
+
+.year-dropdown {
+    display: none; /* Hide the year dropdown by default */
+    position: absolute; /* Position the dropdown absolutely within the li */
+    background-color: #333; /* Background color for the dropdown */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Box shadow for dropdown */
+    padding: 12px 16px; /* Padding for dropdown content */
+    z-index: 1; /* Ensures dropdown appears on top of other content */
+}
+
+.navbar ul li:hover .year-dropdown {
+    display: block; /* Show the dropdown on hover */
+}
+
+.year-dropdown a {
+    color: white; /* Text color for links in the dropdown */
+    padding: 5px 10px; /* Padding for links */
+    text-decoration: none; /* Remove underline from links */
+    display: block; /* Display links as block for better hover area */
+}
+
+.year-dropdown a:hover {
+    background-color: #2596be; /* Background color for hover on links */
+}
+
+/* Additional styles for hover effect and transition */
+.navbar ul li:hover {
+    background-color: #1e719b; /* Background color for hover on segment */
+    transition: background-color 0.3s; /* Smooth transition for background color */
 }
 
 footer {

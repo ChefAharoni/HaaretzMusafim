@@ -2,9 +2,23 @@ from bs4 import BeautifulSoup
 import requests
 import json
 from modules import group_dates
+import logging
 
 
 HAARETZ_SITEMAP = "https://www.haaretz.co.il/sitemap.xml"
+
+
+def open_json(fname: str) -> dict:
+    with open(fname, "r") as file:
+        j_dict = json.load(file)
+        logging.info(f"Loaded {fname}")
+    return j_dict
+
+
+def save_json(fname: str, dict: dict) -> None:
+    with open(fname, "w") as file:
+        json.dump(dict, file, indent=4)
+        logging.info(f"Saved {fname}")
 
 
 def fetch_sitemap():
@@ -56,8 +70,11 @@ def add_titles():
     grouped_articles = open_json("data/grouped_articles.json")
     titled_urls = open_json("data/titled_urls.json")  # Load existing titled URLs
 
+    if titled_urls:
+        print("Loaded existing titled URLs.")
+
     for month, dates in grouped_articles.items():
-        titled_urls[month] = {}
+        # titled_urls[month] = {}
         for date, urls in dates.items():
             if month in titled_urls and date in titled_urls[month]:
                 print(f"Skipping already processed date: {date} in {month}")
@@ -73,14 +90,19 @@ def add_titles():
             print(f"Processed {date} for {month}")
 
         save_json("data/titled_urls.json", titled_urls)
-    print("Titles added and saved.")
+        print("Titles added and saved.")
 
 
-def get_title(url):
-    # TODO - Add a typehint to url and return; add docs
-    print(
-        f"Type of url: {type(url)}"
-    )  # Used only to check the type of url, delete after hint is added
+def get_title(url: str) -> str:
+    """
+    Fetches the title of a web page given its URL.
+
+    Args:
+        url (str): The URL of the web page.
+
+    Returns:
+        str: The title of the web page, or None if an error occurred.
+    """
     try:
         response = requests.get(url)
         soup = BeautifulSoup(response.content, "html.parser")
@@ -92,9 +114,6 @@ def get_title(url):
         print(f"Error fetching title for {url}: {e}")
         print(f"Response: {response}")
         title = None
-    print(
-        f"Title type: {type(title)}"
-    )  # Used only to check the type of url, delete after hint is added
     return title
 
 
@@ -113,17 +132,6 @@ def fetch_months():
         article = [loc.text for loc in soup.find_all("loc")]
         articles[url] = article
     return articles
-
-
-def open_json(fname: str) -> dict:
-    with open(fname, "r") as file:
-        j_dict = json.load(file)
-    return j_dict
-
-
-def save_json(fname: str, dict: dict) -> None:
-    with open(fname, "w") as file:
-        json.dump(dict, file, indent=4)
 
 
 if __name__ == "__main__":

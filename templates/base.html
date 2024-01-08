@@ -18,6 +18,15 @@
           <a href="{{ url_for('show_segment', segment=segment) }}"
             >{{ segment }} - {{ segment+4 }}</a
           >
+          {% if segment_years[segment] %}
+          <div class="year-dropdown">
+            {% for year in segment_years[segment] %}
+            <a href="{{ url_for('show_segment', segment=segment, year=year) }}"
+              >{{ year }}</a
+            >
+            {% endfor %}
+          </div>
+          {% endif %}
         </li>
         {% endfor %}
       </ul>
