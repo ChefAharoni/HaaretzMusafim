@@ -136,5 +136,5 @@ def fetch_months():
 
 
 if __name__ == "__main__":
-    # fetch_urls()
+    fetch_urls()
     add_titles()
