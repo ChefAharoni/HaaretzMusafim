@@ -21,33 +21,30 @@ setup(
     ],
     keywords='haaretz, newspaper, archive, israel, magazines',
     install_requires=[
-        beautifulsoup4==4.12.2
-        blinker==1.7.0
-        certifi==2023.11.17
-        charset-normalizer==3.3.2
-        click==8.1.7
-        dotenv==0.0.5
-        Flask==3.0.0
-        gitdb==4.0.11
-        GitPython==3.1.40
-        idna==3.6
-        itsdangerous==2.1.2
-        Jinja2==3.1.2
-        lxml==5.0.0
-        MarkupSafe==2.1.3
-        python-dotenv==1.0.0
-        requests==2.31.0
-        smmap==5.0.1
-        soupsieve==2.5
-        urllib3==2.1.0
-        Werkzeug==3.0.1
+        'beautifulsoup4==4.12.2',
+        'blinker==1.7.0',
+        'certifi==2023.11.17',
+        'charset-normalizer==3.3.2',
+        'click==8.1.7',
+        'dotenv==0.0.5',
+        'Flask==3.0.0',
+        'gitdb==4.0.11',
+        'GitPython==3.1.40',
+        'idna==3.6',
+        'itsdangerous==2.1.2',
+        'Jinja2==3.1.2',
+        'lxml==5.0.0',
+        'MarkupSafe==2.1.3',
+        'python-dotenv==1.0.0',
+        'requests==2.31.0',
+        'smmap==5.0.1',
+        'soupsieve==2.5',
+        'urllib3==2.1.0',
+        'Werkzeug==3.0.1'
     ],
-    python_requires='>=3.6', # Adjust as per your project's Python version requirements
-    # Add any additional configuration or scripts if required
+    python_requires='>=3.6',  # Adjust as per your project's Python version requirements
     entry_points={
         'console_scripts': [
-            # If you have any scripts to run your project, list them here
-            # Example: 'haaretz_archive=your_package:main_function',
         ],
     },
 )
