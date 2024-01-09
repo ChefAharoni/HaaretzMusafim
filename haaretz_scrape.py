@@ -45,14 +45,14 @@ def fetch_urls():
     Fetches the Haaretz sitemap and returns a list of URLs.
     """
     sitemap = fetch_sitemap()
-    mag_urls = open_json("data/haaretz_sitemap.json")
+    mag_urls = open_json("data/mag_urls.json")
     for month in sitemap:
         if month in mag_urls.keys():
             print(f"Skipping: {month}")
             continue
         response = requests.get(month)
         print(f"Fetching URLs from: {month}")
-        print(f"Response: {response}")
+        print(f"Response Code: {response.status_code}")
         soup = BeautifulSoup(response.content, "xml")
         urls = [loc.text for loc in soup.find_all("loc")]
         site_relevant_urls = []
@@ -118,12 +118,6 @@ def get_title(url: str) -> str:
     return title
 
 
-def print_urls():
-    urls = fetch_sitemap()
-    for url in urls:
-        print(url)
-
-
 def fetch_months():
     urls = fetch_sitemap()
     articles = {}
@@ -137,4 +131,4 @@ def fetch_months():
 
 if __name__ == "__main__":
     fetch_urls()
-    add_titles()
+    # add_titles()
