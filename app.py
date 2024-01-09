@@ -79,6 +79,10 @@ def inject_segments():
 
     return {"segments": grouped_dates.keys(), "segment_years": segment_years}
 
+@app.route("/support_us")
+def support_us():
+    return render_template("support_us.html")
+
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
