@@ -10,7 +10,7 @@
     <title>ארכיון מוספי הארץ</title>
     <link
       rel="icon"
-      href="https://github.com/ChefAharoni/HaaretzMusafim/blob/main/assets/ArchiveLogo2.ico"
+      href="https://raw.githubusercontent.com/ChefAharoni/HaaretzMusafim/main/assets/ArchiveLogo2.ico"
     />
     {% block head %} {% endblock %}
   </head>
@@ -36,8 +36,9 @@
       </ul>
     </div>
     <div>
-      <button onclick="goBack()" class="button">חזרה אחורה</button>
-      <a href="{{ url_for('index') }}" class="button">לעמוד הראשי</a>
+      <!-- <button onclick="goBack()" class="button">חזרה אחורה</button> -->
+      <!-- <a href="{{ url_for('index') }}" class="button">לעמוד הראשי</a> -->
+      <a href = "{{ url_for('index') }}" class="button"> <img src="https://raw.githubusercontent.com/ChefAharoni/HaaretzMusafim/main/assets/ArchiveLogo.svg"> </a>
     </div>
   </nav>
   <body>

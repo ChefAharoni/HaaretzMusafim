@@ -24,6 +24,13 @@ h1, h2, h3, .button, body {
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
+    padding-bottom: 8px;
+}
+
+.button img {
+    height: 5vh;
+    width: auto;
+    padding-bottom: 0px;
 }
 
 .button:hover {
@@ -94,6 +101,7 @@ a, .accent-color {
     position: sticky; 
     top: 0;
     z-index: 1000; /* Ensures navbar stays on top */
+    padding-bottom: 12px;
 }
 
 .navbar ul {
