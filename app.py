@@ -84,5 +84,10 @@ def support_us():
     return render_template("ads.html")
 
 
+@app.route("/privacy_policy")
+def privacy_policy():
+    return render_template("privacy_policy.html")
+
+
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
