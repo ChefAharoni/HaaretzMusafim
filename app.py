@@ -79,9 +79,9 @@ def inject_segments():
 
     return {"segments": grouped_dates.keys(), "segment_years": segment_years}
 
-@app.route("/support_us")
+@app.route("/ads")
 def support_us():
-    return render_template("support_us.html")
+    return render_template("ads.html")
 
 
 if __name__ == "__main__":
