@@ -4,12 +4,6 @@ import json
 def extract_category(title):
     """
     Extracts the category from the title string.
-
-    Args:
-        title (str): The title string from which the category is to be extracted.
-
-    Returns:
-        str: The extracted category.
     """
     parts = title.rsplit(" - ", 2)
     return parts[-2] if len(parts) >= 2 else "Unknown"
@@ -17,13 +11,7 @@ def extract_category(title):
 
 def transform_data(titled_urls):
     """
-    Transforms the given titled_urls dictionary into a list of dictionaries with keys 'date', 'title', 'url', and 'category'.
-
-    Args:
-        titled_urls (dict): A dictionary containing the titled URLs data.
-
-    Returns:
-        list: A list of dictionaries with transformed data.
+    Transforms the titled_urls dictionary into a list of dictionaries with keys 'date', 'title', 'url', 'category', and 'web_location'.
     """
     transformed_data = []
 
@@ -31,8 +19,15 @@ def transform_data(titled_urls):
         for date, articles in dates.items():
             for url, title in articles.items():
                 category = extract_category(title)
+                web_location = f"/date/{date}"  # The web location path
                 transformed_data.append(
-                    {"date": date, "title": title, "url": url, "category": category}
+                    {
+                        "date": date,
+                        "title": title,
+                        "url": url,
+                        "category": category,
+                        "web_location": web_location,
+                    }
                 )
 
     return transformed_data
@@ -40,16 +35,16 @@ def transform_data(titled_urls):
 
 def main():
     """
-    Main function that loads the existing JSON data, transforms it, and saves the transformed data to a new JSON file.
+    Loads the existing JSON data, transforms it, and saves the transformed data to a new JSON file.
     """
-    # Load the existing JSON data
     with open("data/titled_urls.json", "r") as file:
         titled_urls = json.load(file)
 
-    # Transform the data
     transformed_data = transform_data(titled_urls)
 
-    # Save the transformed data to a new JSON file
+    # Print the length of the transformed data
+    print(f"Length of transformed data: {len(transformed_data)}")
+
     with open("data/algolia_compatible_data.json", "w") as file:
         json.dump(transformed_data, file, indent=4)
 
