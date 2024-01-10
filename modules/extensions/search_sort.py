@@ -12,7 +12,7 @@ def extract_category(title):
         str: The extracted category.
     """
     parts = title.rsplit(" - ", 2)
-    return parts[-2] if len(parts) > 2 else "Unknown Category"
+    return parts[-2] if len(parts) >= 2 else "Unknown"
 
 
 def transform_data(titled_urls):
