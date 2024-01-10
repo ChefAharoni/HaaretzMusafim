@@ -12,6 +12,12 @@
       rel="icon"
       href="https://raw.githubusercontent.com/ChefAharoni/HaaretzMusafim/main/assets/ArchiveLogo2.ico"
     />
+    <!-- CSS for the Algolia search function -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"
+    />
+
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4638207065833948"
@@ -21,6 +27,11 @@
   </head>
   <nav class="navbar">
     <div>
+      <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
+      <script>
+        const { autocomplete } = window["@algolia/autocomplete-js"];
+      </script>
+
       <ul>
         {% for segment in segments %}
         <li>
