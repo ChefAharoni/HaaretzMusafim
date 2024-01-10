@@ -1,0 +1,35 @@
+name: Flask CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flask gunicorn
+          pip install -r requirements.txt # If requirements file exists
+
+      - name: Run tests
+        run: |
+          python -m test_app /tests
+
+      - name: Start Gunicorn
+        run: |
+          gunicorn -w 4 -b 0.0.0.0:5000 app:app --daemon
+        #   gunicorn --worker-tmp-dir /dev/shm app:app
+        # Replace 'yourapp' with the name of your Flask app
+
+    # Add any other steps, like linting, code analysis, etc.
