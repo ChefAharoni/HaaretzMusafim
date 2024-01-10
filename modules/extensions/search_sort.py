@@ -1,9 +1,23 @@
 import json
 
 
+def extract_category(title):
+    """
+    Extracts the category from the title string.
+
+    Args:
+        title (str): The title string from which the category is to be extracted.
+
+    Returns:
+        str: The extracted category.
+    """
+    parts = title.rsplit(" - ", 1)
+    return parts[-1] if len(parts) > 1 else "Unknown Category"
+
+
 def transform_data(titled_urls):
     """
-    Transforms the given titled_urls dictionary into a list of dictionaries with keys 'date', 'title', and 'url'.
+    Transforms the given titled_urls dictionary into a list of dictionaries with keys 'date', 'title', 'url', and 'category'.
 
     Args:
         titled_urls (dict): A dictionary containing the titled URLs data.
@@ -16,7 +30,10 @@ def transform_data(titled_urls):
     for month, dates in titled_urls.items():
         for date, articles in dates.items():
             for url, title in articles.items():
-                transformed_data.append({"date": date, "title": title, "url": url})
+                category = extract_category(title)
+                transformed_data.append(
+                    {"date": date, "title": title, "url": url, "category": category}
+                )
 
     return transformed_data
 
