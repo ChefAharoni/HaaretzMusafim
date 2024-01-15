@@ -181,8 +181,11 @@ def main():
     Returns:
         None
     """
+    print("Fetching URLs...")
     fetch_urls()
+    print("Adding titles...")
     add_titles()
+    print("Organizing articles for search DB...")
     search_sort.main()
 
 
