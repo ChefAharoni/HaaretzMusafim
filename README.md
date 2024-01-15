@@ -10,8 +10,7 @@ Currently working on a search bar function from Algolia on a different branch - 
 
 **FrontEnd needed!**
 
-Currently hosted for free here - http://chefaharonibmcc.pythonanywhere.com
-Can't host on GitHub Pages since the site is not static (and we don't want to use JS :))
+Hosted at: https://haaretzarchive.tech
 
 Disclaimer:
 This repo is not associated in any way with Haaretz, and does not provide illegaly its content. Its sole purpose is to organize the web pages in an archive, in a way it'll be easier to access them. 
