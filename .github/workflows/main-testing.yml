@@ -27,8 +27,8 @@ jobs:
         run: python haaretz_scrape.py
 
       - name: Commit and push changes
-      env:
-        PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        env:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
           git config --global user.email "ChefAharoni@proton.me"
           git config --global user.name "ChefAharoni"
