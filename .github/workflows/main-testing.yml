@@ -1,4 +1,4 @@
-name: Monthly Data Update
+name: Monthly Data Update - Testing
 
 on:
   schedule:
@@ -27,9 +27,12 @@ jobs:
         run: python haaretz_scrape.py
 
       - name: Commit and push changes
+      env:
+        PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
           git config --global user.email "ChefAharoni@proton.me"
           git config --global user.name "ChefAharoni"
           git add data/*
           git commit -m "Auto updated magazines URLs via Script on $(date)" || exit 0
+          git remote set-url origin https://ChefAharoni:${PERSONAL_ACCESS_TOKEN}@github.com/ChefAharoni/HaaretzMusafim.git
           git push
