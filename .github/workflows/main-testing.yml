@@ -1,4 +1,4 @@
-name: Monthly Data Update - Testing
+name: Testing Monthly Data Update
 
 on:
   schedule:
