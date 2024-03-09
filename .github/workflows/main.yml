@@ -2,7 +2,7 @@ name: Monthly Data Update
 
 on:
   schedule:
-    - cron: "0 0 2 * *" # Runs at 00:00 on the second day of every month
+    - cron: "0 22 1 * *" # Runs at 00:00 (TLV Time - UTC+2) on the first day of every month
 
 jobs:
   update_data:
