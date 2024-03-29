@@ -1,10 +1,4 @@
-{% extends "base.html" %} {% block head %} {% endblock %}
-<script
-  async="async"
-  data-cfasync="false"
-  src="//thubanoa.com/1?z=7284294"
-></script>
-{% block body %}
+{% extends "base.html" %} {% block head %} {% endblock %} {% block body %}
 <div class="intro">
   <h1>Ads Page</h1>
 </div>
@@ -13,6 +7,36 @@
   data-cfasync="false"
   src="//thubanoa.com/1?z=7284294"
 ></script>
+<script
+  data-cfasync="false"
+  type="text/javascript"
+  src="../static/js/attractive_tag.js"
+></script>
+<script>
+  (function (d, z, x, s, e, o) {
+    s.src = "//" + d + "/tag.min.js";
+    x.withCredentials = true;
+    x.open("GET", "//" + d + "/5/" + z + "/?oo=1&aab=1", !0);
+    s.onerror = x.onerror = E;
+    s.onload = x.onload = g;
+    x.send();
+    (document.body || document.documentElement).appendChild(s);
+    function g() {
+      o = this.response ? JSON.parse(this.response) : o;
+      o && window.kkp4a5x5tv && window.kkp4a5x5tv(o);
+    }
+    function E() {
+      e && e();
+      e = null;
+    }
+  })(
+    "psockapa.net",
+    7284369,
+    new XMLHttpRequest(),
+    document.createElement("script"),
+    _digbvwl
+  );
+</script>
 <!-- <script
   async
   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4638207065833948"
