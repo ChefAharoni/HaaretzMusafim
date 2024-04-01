@@ -3,6 +3,7 @@ name: Monthly Data Update
 on:
   schedule:
     - cron: "0 21 1 * *" # Runs at 00:00 (TLV Time - UTC+3) on the first day of every month
+  workflow_dispatch:
 
 jobs:
   update_data:
