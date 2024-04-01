@@ -25,29 +25,22 @@ def fetch_sitemap():
     """
     Fetches the Haaretz sitemap and returns a list of URLs.
     """
-    response = requests.get(HAARETZ_SITEMAP)
-    soup = BeautifulSoup(response.content, "xml")
-    sitemap = [loc.text for loc in soup.find_all("loc")]
+    response = requests.get(HAARETZ_SITEMAP)  # Fetch the sitemap
+    soup = BeautifulSoup(response.content, "xml")  # Parse the XML content
+    sitemap = [
+        loc.text for loc in soup.find_all("loc")
+    ]  # Extract the URLs from the sitemap
     return sitemap
-
-
-def save_sitemap_to_json():
-    """
-    Saves the Haaretz sitemap to a JSON file.
-    """
-    sitemap = fetch_sitemap()
-    with open("data/haaretz_sitemap.json", "w") as file:
-        json.dump(sitemap, file, indent=4)
 
 
 def fetch_urls():
     """
     Fetches the Haaretz sitemap and returns a list of URLs.
     """
-    sitemap = fetch_sitemap()
-    mag_urls = open_json("data/mag_urls.json")
-    for month in sitemap:
-        if month in mag_urls.keys():
+    sitemap = fetch_sitemap()  # Fetch the sitemap
+    mag_urls = open_json("data/mag_urls.json")  # Load existing URLs
+    for month in sitemap:  # Iterate over the URLs in the sitemap
+        if month in mag_urls.keys():  # Skip URLs that have already been processed
             print(f"Skipping: {month}")
             continue
         response = requests.get(month)
