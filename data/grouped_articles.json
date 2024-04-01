@@ -20402,7 +20402,6 @@
             "https://www.haaretz.co.il/magazine/blacklist/2024-01-31/ty-article/.highlight/0000018d-5fe3-d9df-a9cd-7fffbb7c0000"
         ]
     },
-    "https://www.haaretz.co.il/sitemap-latest.xml": {},
     "https://www.haaretz.co.il/sitemap-202402.xml": {
         "2024-02-03": [
             "https://www.haaretz.co.il/magazine/haaretzlogicpuzzle/2024-02-01/ty-article-magazine/.premium/0000018d-63a5-d480-adbd-ebb53ca70000",
@@ -20623,5 +20622,6 @@
             "https://www.haaretz.co.il/magazine/obit/2024-03-01/ty-article/0000018d-f89d-d72b-a18d-fbfd751d0000"
         ]
     },
-    "https://www.haaretz.co.il/sitemap-202404.xml": {}
+    "https://www.haaretz.co.il/sitemap-202404.xml": {},
+    "https://www.haaretz.co.il/sitemap-latest.xml": {}
 }
