@@ -8,7 +8,7 @@
 
 Since Haaretz doesn't provide a an organized archive for their Musafim (weekend magazines), this repo takes each week's url of the magazine, and displays it as a list.
 
-Currently working on a search bar function from Algolia on a different branch - no success so far. If anyone is farmiliar with it and would like to work on it - feel free.
+Currently working on a search bar function from Algolia on a different branch - no success so far. If anyone is familiar with it and would like to work on it - feel free.
 
 **FrontEnd needed!**
 
