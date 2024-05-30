@@ -11,8 +11,11 @@ Since Haaretz doesn't provide a an organized archive for their Musafim (weekend 
 Currently working on a search bar function from Algolia on a different branch - no success so far. If anyone is familiar with it and would like to work on it - feel free.
 
 **FrontEnd needed!**
+**Trying to add Algolia search function, no success so far.**
 
 Hosted at: https://haaretzarchive.tech
+
+Built with [Flask](https://flask.palletsprojects.com/en/3.0.x/).
 
 Disclaimer:
 This repo is not associated in any way with Haaretz, and does not provide illegaly its content. Its sole purpose is to organize the web pages in an archive, in a way it'll be easier to access them. 
