@@ -18,6 +18,6 @@ Hosted at: https://haaretzarchive.tech
 Built with [Flask](https://flask.palletsprojects.com/en/3.0.x/).
 
 Disclaimer:
-This repo is not associated in any way with Haaretz, and does not provide illegaly its content. Its sole purpose is to organize the web pages in an archive, in a way it'll be easier to access them. 
+This repo is not associated in any way with Haaretz, and does not illegaly distirbute its content. Its sole purpose is to organize the web pages in an archive, in a way it'll be easier to access them. 
 A paid membership to Haaretz is still needed to view these magazines.
 
