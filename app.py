@@ -2,7 +2,6 @@ from flask import Flask, request, render_template, url_for, jsonify, abort
 from collections import defaultdict
 import json
 from datetime import datetime
-from modules.old import fetchURL as fetch
 from modules import dates_segments
 import haaretz_scrape
 
