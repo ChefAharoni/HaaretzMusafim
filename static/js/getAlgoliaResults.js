@@ -6,10 +6,21 @@ import "@algolia/autocomplete-theme-classic";
 //   "39fe5d71882d2469dc10a89f8823e6a0"
 // );
 
-const searchClient = algoliasearch(
-  process.env.ALGOLIA_APP_ID,
-  process.env.ALGOLIA_SEARCH_API_KEY
-);
+let envConfig = {};
+
+fetch("/env-config")
+  .then((response) => response.json())
+  .then((data) => {
+    envConfig = data;
+    initAlgolia();
+  });
+
+function initAlgolia() {
+  const searchClient = algoliasearch(
+    envConfig.ALGOLIA_APP_ID,
+    envConfig.ALGOLIA_SEARCH_API_KEY
+  );
+}
 
 autocomplete({
   container: "#autocomplete",

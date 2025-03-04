@@ -4,19 +4,30 @@ import algoliasearch from "algoliasearch/lite";
 
 import "@algolia/autocomplete-theme-classic";
 
+let envConfig = {};
+
+fetch("/env-config")
+  .then((response) => response.json())
+  .then((data) => {
+    envConfig = data;
+    initAlgolia();
+  });
+
 // const searchClient = algoliasearch(
 //   "R0P8LNKXOK",
 //   "39fe5d71882d2469dc10a89f8823e6a0"
 // );
 
-const searchClient = algoliasearch(
-  process.env.ALGOLIA_APP_ID,
-  process.env.ALGOLIA_SEARCH_API_KEY
-);
+function initAlgolia() {
+  const searchClient = algoliasearch(
+    envConfig.ALGOLIA_APP_ID,
+    envConfig.ALGOLIA_SEARCH_API_KEY
+  );
+}
 
 autocomplete({
   container: "#autocomplete",
-  placeholder: "חיפוש מוספים...",
+  placeholder: "חיפוש כתבות...",
   openOnFocus: true,
   insights: true,
   plugins: [createRedirectUrlPlugin()],

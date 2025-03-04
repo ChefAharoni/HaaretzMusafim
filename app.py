@@ -2,6 +2,10 @@ from flask import Flask, render_template
 from collections import defaultdict
 from modules import dates_segments
 import haaretz_scrape
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -85,6 +89,14 @@ def support_us():
 @app.route("/privacy_policy")
 def privacy_policy():
     return render_template("privacy_policy.html")
+
+
+@app.route("/env-config")
+def env_config():
+    return {
+        "ALGOLIA_APP_ID": os.getenv("ALGOLIA_APP_ID"),
+        "ALGOLIA_SEARCH_API_KEY": os.getenv("ALGOLIA_SEARCH_API_KEY"),
+    }
 
 
 if __name__ == "__main__":
