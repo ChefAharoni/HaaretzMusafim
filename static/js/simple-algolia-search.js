@@ -6,12 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchResults = document.getElementById("search-results");
   const searchButton = document.getElementById("search-button");
 
-  // Algolia client
-  // const client = algoliasearch(
-  //   "R0P8LNKXOK",
-  //   "39fe5d71882d2469dc10a89f8823e6a0"
-  // );
-
   let envConfig = {};
   let searchClient;
   let index;

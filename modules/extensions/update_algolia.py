@@ -79,7 +79,6 @@ ALGOLIA_APP_ID = os.getenv("ALGOLIA_APP_ID")
 
 
 def update_algolia_index(
-    # app_id: str = "R0P8LNKXOK",
     app_id: str = ALGOLIA_APP_ID,
     index_name: str = "HaaretzArchive Index",
     data_file: str = "data/algolia_compatible_data.json",

@@ -1,10 +1,6 @@
 import algoliasearch from "algoliasearch/lite";
 import { autocomplete, getAlgoliaResults } from "@algolia/autocomplete-js";
 import "@algolia/autocomplete-theme-classic";
-// const searchClient = algoliasearch(
-//   "R0P8LNKXOK",
-//   "39fe5d71882d2469dc10a89f8823e6a0"
-// );
 
 let envConfig = {};
 let searchClient;

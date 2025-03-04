@@ -20,7 +20,6 @@ def hello_algolia():
     A simple function to demonstrate Algolia integration.
     """
     # Connect and authenticate with your Algolia app
-    # client = SearchClient.create("R0P8LNKXOK", ALGOLIA_APP_KEY)
     client = SearchClient.create(ALGOLIA_APP_ID, ALGOLIA_APP_KEY)
 
     ALGOLIA_APP_ID = os.getenv("ALGOLIA_APP_ID")
