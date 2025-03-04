@@ -3,12 +3,22 @@ import requests
 import json
 from modules import group_dates
 import logging
+from modules.extensions import search_sort
 
 
 HAARETZ_SITEMAP = "https://www.haaretz.co.il/sitemap.xml"
 
 
 def open_json(fname: str) -> dict:
+    """
+    Opens a JSON file and returns its contents as a dictionary.
+
+    Args:
+        fname (str): The file name or path.
+
+    Returns:
+        dict: The contents of the JSON file as a dictionary.
+    """
     with open(fname, "r") as file:
         j_dict = json.load(file)
         logging.info(f"Loaded {fname}")
@@ -16,6 +26,16 @@ def open_json(fname: str) -> dict:
 
 
 def save_json(fname: str, dict: dict) -> None:
+    """
+    Saves a dictionary as JSON to a file.
+
+    Args:
+        fname (str): The file name or path.
+        dict (dict): The dictionary to be saved.
+
+    Returns:
+        None
+    """
     with open(fname, "w") as file:
         json.dump(dict, file, indent=4)
         logging.info(f"Saved {fname}")
@@ -24,6 +44,9 @@ def save_json(fname: str, dict: dict) -> None:
 def fetch_sitemap():
     """
     Fetches the Haaretz sitemap and returns a list of URLs.
+
+    Returns:
+        list: A list of URLs from the Haaretz sitemap.
     """
     response = requests.get(HAARETZ_SITEMAP)  # Fetch the sitemap
     soup = BeautifulSoup(response.content, "xml")  # Parse the XML content
@@ -33,9 +56,26 @@ def fetch_sitemap():
     return sitemap
 
 
+
+def save_sitemap_to_json():
+    """
+    Saves the Haaretz sitemap to a JSON file.
+
+    Returns:
+        None
+    """
+    sitemap = fetch_sitemap()
+    with open("data/haaretz_sitemap.json", "w") as file:
+        json.dump(sitemap, file, indent=4)
+
+
+
 def fetch_urls():
     """
     Fetches the Haaretz sitemap and returns a list of URLs.
+
+    Returns:
+        dict: A dictionary containing the URLs grouped by month.
     """
     sitemap = fetch_sitemap()  # Fetch the sitemap
     mag_urls = open_json("data/mag_urls.json")  # Load existing URLs
@@ -60,6 +100,19 @@ def fetch_urls():
 
 
 def add_titles():
+    """
+    Fetches titles for articles and adds them to the 'titled_urls' dictionary.
+
+    This function iterates over the 'grouped_articles' dictionary, which contains articles grouped by month and date.
+    For each date, it fetches the titles for the corresponding URLs and adds them to the 'titled_urls' dictionary.
+    The 'titled_urls' dictionary is then saved to a JSON file.
+
+    Parameters:
+    None
+
+    Returns:
+    None
+    """
     grouped_articles = open_json("data/grouped_articles.json")
     titled_urls = open_json("data/titled_urls.json")  # Load existing titled URLs
 
@@ -67,14 +120,11 @@ def add_titles():
         print("Loaded existing titled URLs.")
 
     for month, dates in grouped_articles.items():
-        # titled_urls[month] = {}
         for date, urls in dates.items():
             if month in titled_urls and date in titled_urls[month]:
                 print(f"Skipping already processed date: {date} in {month}")
                 continue
 
-            # titled_urls[month][date] = {}
-            # checks if a specified key exists in the dictionary. If the key is found, it returns the value associated with that key. If the key is not found, it adds the key with a default value.
             titled_urls.setdefault(month, {})[date] = {}
             print(f"Fetching titles for: {date}")
             for url in urls:
@@ -112,6 +162,12 @@ def get_title(url: str) -> str:
 
 
 def fetch_months():
+    """
+    Fetches the articles grouped by month.
+
+    Returns:
+        dict: A dictionary containing the articles grouped by month.
+    """
     urls = fetch_sitemap()
     articles = {}
     for url in urls:
@@ -122,6 +178,23 @@ def fetch_months():
     return articles
 
 
-if __name__ == "__main__":
+def main():
+    """
+    Main function to fetch URLs, add titles, and perform search and sort operations.
+
+    Returns:
+        None
+    """
+    print("Fetching URLs...")
     fetch_urls()
+     print("Adding titles...")
+    add_titles()
+    print("Organizing articles for search DB...")
+    search_sort.main()
+    print("Adding titles...")
+    add_titles()
+
+
+if __name__ == "__main__":
+    main()
     add_titles()

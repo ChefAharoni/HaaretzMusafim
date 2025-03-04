@@ -55,11 +55,25 @@
     />
     <meta property="og:url" content="https://haaretzarchive.tech/" />
 
+    <!-- Google Adsense -->
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4638207065833948"
       crossorigin="anonymous"
     ></script>
+
+
+    <!-- Algolia search function -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
+    <script>
+      const { autocomplete } = window["@algolia/autocomplete-js"];
+    </script> -->
+    <!-- CSS Classic Theme  - Algolia -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"
+    />
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -74,15 +88,15 @@
         }
       }
     </script>
+    
+    
     {% block head %} {% endblock %}
   </head>
   <nav class="navbar">
     <div>
-      <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
-      <script>
-        const { autocomplete } = window["@algolia/autocomplete-js"];
-      </script>
-
+      <div class="search_container">
+        <div id="autocomplete"></div>
+      </div>
       <ul>
         {% for segment in segments %}
         <li>
@@ -134,6 +148,12 @@
       })();
     </script>
     {% block body %} {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-plugin-redirect-url"></script>
+    <script src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
+
     <footer>
       <p>
         <strong>Disclaimer:</strong> This archive is independently created and
@@ -144,17 +164,17 @@
         subscription to Haaretz. This archive does not host or reproduce Haaretz
         content illegally.
       </p>
-      <p>&copy; 2024 ChefAharoni. All rights reserved.</p>
+      <p>&copy; 2025 ChefAharoni. All rights reserved.</p>
       <p><a href="mailto:support@haaretzarchive.tech">Contact Us</a></p>
       <p>
         <a href="https://github.com/ChefAharoni/HaaretzMusafim">
           <img
-            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            src="https://raw.githubusercontent.com/ChefAharoni/HaaretzMusafim/main/assets/github-mark/github-mark.svg"
             alt="GitHub Logo"
             style="
               height: 20px;
               width: 20px;
-              vertical-align: middle;
+              /* vertical-align: middle; */
               background: transparent;
             "
           />
@@ -186,4 +206,9 @@
           src="https://c5.patreon.com/external/logo/become_a_patron_button.png"
           alt="Become a Patron!"
           style="height: 40px !important; width: 170px !important;"></a>
+
+          
+            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            --
+          />
 -->
