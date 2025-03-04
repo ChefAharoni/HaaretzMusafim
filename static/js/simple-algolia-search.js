@@ -7,10 +7,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchButton = document.getElementById("search-button");
 
   // Algolia client
+  // const client = algoliasearch(
+  //   "R0P8LNKXOK",
+  //   "39fe5d71882d2469dc10a89f8823e6a0"
+  // );
+
   const client = algoliasearch(
-    "R0P8LNKXOK",
-    "39fe5d71882d2469dc10a89f8823e6a0"
+    process.env.ALGOLIA_APP_ID,
+    process.env.ALGOLIA_SEARCH_API_KEY
   );
+
   const index = client.initIndex("HaaretzArchive Index");
 
   // Variables
