@@ -1,201 +1,298 @@
-h1, h2, h3, .button, body {
-    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
-    cursor: default;
-    font-family: "Open Sans Hebrew","Helvetica Neue",tahoma,Helvetica,Arial,sans-serif;
-    color: #2596be;
-    background-color: #272727;
+h1,
+h2,
+h3,
+.button,
+body {
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+  cursor: default;
+  font-family: "Open Sans Hebrew", "Helvetica Neue", tahoma, Helvetica, Arial,
+    sans-serif;
+  color: #2596be;
+  background-color: #272727;
 }
 
 .year_header {
-    color: #1c799a;
+  color: #1c799a;
 }
 
 /* Button used in return home and go back */
 .button {
-    font-family: "Open Sans Hebrew", "Helvetica Neue", Tahoma, Helvetica, Arial, sans-serif;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: white; 
-    background-color: #333; 
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    padding-bottom: 8px;
+  font-family: "Open Sans Hebrew", "Helvetica Neue", Tahoma, Helvetica, Arial,
+    sans-serif;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: white;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding-bottom: 8px;
 }
 
 .button img {
-    height: 5vh;
-    width: auto;
-    padding-bottom: 0px;
+  height: 5vh;
+  width: auto;
+  padding-bottom: 0px;
 }
 
 .button:hover {
-    background-color: #2596be; /* A shade for hover effect */
-    color: #f4f4f4; /* Text color on hover */
+  background-color: #2596be; /* A shade for hover effect */
+  color: #f4f4f4; /* Text color on hover */
 }
 
 .button:active {
-    background-color: #1e719b; /* Darker shade for active state */
-    transform: translateY(2px);
+  background-color: #1e719b; /* Darker shade for active state */
+  transform: translateY(2px);
 }
 
-a, .accent-color {
-    color: #007bff; /* Accent color */
+a,
+.accent-color {
+  color: #007bff; /* Accent color */
 }
 
 .container {
-    width: 80%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 /* Segment is group of years at the navbar */
 .segment {
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.segment h1, h2, h3 {
-    margin-top: 0;
-    text-align: center;
+.segment h1,
+h2,
+h3 {
+  margin-top: 0;
+  text-align: center;
 }
 
 .segment h2 {
-    font-size: 2em;
+  font-size: 2em;
 }
 
-.segment li{
-    margin-bottom: 5px;
+.segment li {
+  margin-bottom: 5px;
 }
 
 /* In index.html - introduction to the archive website. */
 .intro p {
-    text-align: right;
-    direction: rtl;
-    grid-column: span 3;
-    margin-right: 10%;
-    margin-left: 10%;
-    font-size: 20px;
+  text-align: right;
+  direction: rtl;
+  grid-column: span 3;
+  margin-right: 10%;
+  margin-left: 10%;
+  font-size: 20px;
 }
 
 .intro h1 {
-    font-size: 4em;
-    margin-bottom: 0;
-    text-align: center;
-    margin-top: 0;
+  font-size: 4em;
+  margin-bottom: 0;
+  text-align: center;
+  margin-top: 0;
 }
 
 .index_logo {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
-/* Navigation bar - available throughout the website */
+/* Updated navbar styles */
 .navbar {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    display: flex; /* Enable Flexbox */
-    justify-content: space-between; /* Space between navbar items */
-    align-items: center; /* Align items vertically */
-    position: sticky; 
-    top: 0;
-    z-index: 1000; /* Ensures navbar stays on top */
-    padding-bottom: 12px;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-left,
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-left {
+  flex: 1;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .navbar ul {
-    list-style-type: none;
-    display: flex;
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  position: relative;
 }
 
 .navbar ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px; /* Add some padding for better appearance */
-    position: relative; /* Position the li element relative to its normal position */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition effect */
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .year-dropdown {
-    display: none; /* Hide the year dropdown by default */
-    position: absolute; /* Position the dropdown absolutely within the li */
-    background-color: #333; /* Background color for the dropdown */
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Box shadow for dropdown */
-    padding: 12px 16px; /* Padding for dropdown content */
-    z-index: 1; /* Ensures dropdown appears on top of other content */
+  display: none;
+  position: absolute;
+  background-color: #333;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
 }
 
 .navbar ul li:hover .year-dropdown {
-    display: block; /* Show the dropdown on hover */
+  display: block;
 }
 
 .year-dropdown a {
-    color: white; /* Text color for links in the dropdown */
-    padding: 5px 10px; /* Padding for links */
-    text-decoration: none; /* Remove underline from links */
-    display: block; /* Display links as block for better hover area */
+  color: white;
+  padding: 5px 10px;
+  text-decoration: none;
+  display: block;
 }
 
 .year-dropdown a:hover {
-    background-color: #2596be; /* Background color for hover on links */
+  background-color: #2596be;
+}
+
+.navbar ul li:hover {
+  background-color: #1e719b;
+  transition: background-color 0.3s;
+}
+
+/* Search container styles */
+.search_container {
+  position: relative;
+  width: 250px;
+  direction: rtl;
+}
+
+/* Responsive adjustments */
+@media (max-width: 920px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px 0;
+  }
+
+  .navbar-left,
+  .navbar-right {
+    width: 100%;
+    justify-content: center;
+    margin: 5px 0;
+  }
+
+  .navbar ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .search_container {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar ul li {
+    margin: 5px 0;
+  }
+
+  .year-dropdown {
+    position: static;
+    display: none;
+    width: 100%;
+  }
+
+  .navbar-right {
+    flex-direction: column-reverse;
+  }
+}
+
+.year-dropdown a {
+  color: white; /* Text color for links in the dropdown */
+  padding: 5px 10px; /* Padding for links */
+  text-decoration: none; /* Remove underline from links */
+  display: block; /* Display links as block for better hover area */
+}
+
+.year-dropdown a:hover {
+  background-color: #2596be; /* Background color for hover on links */
 }
 
 /* Additional styles for hover effect and transition */
 .navbar ul li:hover {
-    background-color: #1e719b; /* Background color for hover on segment */
-    transition: background-color 0.3s; /* Smooth transition for background color */
+  background-color: #1e719b; /* Background color for hover on segment */
+  transition: background-color 0.3s; /* Smooth transition for background color */
 }
 
 footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 20%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 20%;
 }
 
-a:hover, .navbar ul li a:hover {
-    color: #0056b3; /* Darker shade of accent color */
+a:hover,
+.navbar ul li a:hover {
+  color: #0056b3; /* Darker shade of accent color */
 }
 
 /* When showing the actual links with the titles */
 .links {
-    display: flex;
-    justify-content: space-between;
-    align-items: right;
-    text-align: right;
-    direction: rtl;
-    margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: right;
+  text-align: right;
+  direction: rtl;
+  margin-top: 10px;
 }
 
 .upper_notes {
-    direction: rtl;
-    text-align: right;
-    align-items: center;
+  direction: rtl;
+  text-align: right;
+  align-items: center;
 }
 
-
 .date_header {
-    direction: rtl;
-    text-align: center;
-    align-items: center;
-    margin-top: 10px;
+  direction: rtl;
+  text-align: center;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .error_message {
-    direction: rtl;
-    text-align: center;
-    color: red;
-    margin-top: 5%;
+  direction: rtl;
+  text-align: center;
+  color: red;
+  margin-top: 5%;
 }
 /* article {
     margin-bottom: 20px;
@@ -207,8 +304,6 @@ article p {
     line-height: 1.6;
 } */
 
-
-
 /* img {
     max-width: 100%;
     height: auto;
@@ -219,4 +314,3 @@ article p {
         grid-template-columns: 1fr;
     }
 } */
-

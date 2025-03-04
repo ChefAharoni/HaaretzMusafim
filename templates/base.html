@@ -79,8 +79,30 @@
 
     {% block head %} {% endblock %}
   </head>
+  <!-- Updated navbar structure -->
   <nav class="navbar">
-    <div>
+    <div class="navbar-left">
+      <ul>
+        {% for segment in segments %}
+        <li>
+          <a href="{{ url_for('show_segment', segment=segment) }}"
+            >{{ segment }} - {{ segment+4 }}</a
+          >
+          {% if segment_years[segment] %}
+          <div class="year-dropdown">
+            {% for year in segment_years[segment] %}
+            <a href="{{ url_for('show_segment', segment=segment, year=year) }}"
+              >{{ year }}</a
+            >
+            {% endfor %}
+          </div>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="navbar-right">
       <div id="search-container" class="search_container">
         <div class="search-form">
           <input type="text" id="search-input" placeholder="חיפוש מוספים..." />
@@ -101,26 +123,7 @@
         </div>
         <div id="search-results"></div>
       </div>
-      <ul>
-        {% for segment in segments %}
-        <li>
-          <a href="{{ url_for('show_segment', segment=segment) }}"
-            >{{ segment }} - {{ segment+4 }}</a
-          >
-          {% if segment_years[segment] %}
-          <div class="year-dropdown">
-            {% for year in segment_years[segment] %}
-            <a href="{{ url_for('show_segment', segment=segment, year=year) }}"
-              >{{ year }}</a
-            >
-            {% endfor %}
-          </div>
-          {% endif %}
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div>
+
       <a href="{{ url_for('index') }}" class="button">
         <img
           src="https://raw.githubusercontent.com/ChefAharoni/HaaretzMusafim/main/assets/ArchiveLogo.svg"
