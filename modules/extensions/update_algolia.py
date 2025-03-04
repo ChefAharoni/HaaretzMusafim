@@ -2,7 +2,6 @@ import json
 import os
 import hashlib
 import logging
-from algoliasearch.search_client import SearchClient
 from typing import List, Dict, Any, Optional
 
 # Set up logging
@@ -10,6 +9,20 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger("algolia_updater")
+
+# Global flag to track if algoliasearch is available
+ALGOLIA_AVAILABLE = False
+
+# Try to import algoliasearch, but don't fail if it's not available
+try:
+    from algoliasearch.search_client import SearchClient
+
+    ALGOLIA_AVAILABLE = True
+except ImportError:
+    logger.warning(
+        "algoliasearch package not installed. Algolia updates will be skipped."
+    )
+    logger.warning("To enable Algolia updates, run: pip install algoliasearch")
 
 
 def load_json_data(file_path: str) -> List[Dict[str, Any]]:
@@ -80,6 +93,12 @@ def update_algolia_index(
     Returns:
         True if successful, False otherwise
     """
+    # Check if algoliasearch is available
+    if not ALGOLIA_AVAILABLE:
+        logger.error("Cannot update Algolia index: algoliasearch package not installed")
+        logger.error("Please run: pip install algoliasearch")
+        return False
+
     # Get Algolia admin key from environment variables
     admin_key = os.getenv("ALGOLIA_APP_KEY")
 
@@ -135,11 +154,17 @@ def main():
     """
     Main function to update Algolia index
     """
+    if not ALGOLIA_AVAILABLE:
+        logger.warning("Skipping Algolia update: algoliasearch package not installed")
+        return False
+
     success = update_algolia_index()
     if success:
         logger.info("Algolia index update completed successfully")
     else:
         logger.error("Algolia index update failed")
+
+    return success
 
 
 if __name__ == "__main__":
