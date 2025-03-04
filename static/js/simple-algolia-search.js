@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  const index = client.initIndex("HaaretzArchive Index");
+  const index = searchClient.initIndex("HaaretzArchive Index");
 
   // Variables
   let resultsVisible = false;
