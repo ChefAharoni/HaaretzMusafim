@@ -56,7 +56,6 @@ def fetch_sitemap():
     return sitemap
 
 
-
 def save_sitemap_to_json():
     """
     Saves the Haaretz sitemap to a JSON file.
@@ -67,7 +66,6 @@ def save_sitemap_to_json():
     sitemap = fetch_sitemap()
     with open("data/haaretz_sitemap.json", "w") as file:
         json.dump(sitemap, file, indent=4)
-
 
 
 def fetch_urls():
@@ -187,7 +185,7 @@ def main():
     """
     print("Fetching URLs...")
     fetch_urls()
-     print("Adding titles...")
+    print("Adding titles...")
     add_titles()
     print("Organizing articles for search DB...")
     search_sort.main()
