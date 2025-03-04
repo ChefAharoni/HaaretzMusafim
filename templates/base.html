@@ -1,8 +1,23 @@
 <!DOCTYPE html>
 <html lang="he">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-JDV3DSX0Z0"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-JDV3DSX0Z0");
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="monetag" content="1a1738ceefdb4445060c09f497480c9c" />
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/main.css') }}"
@@ -19,11 +34,11 @@
     />
     <meta
       name="description"
-      content="ארכיון למוספי הארץ. פורטל לינקים של מוספי הארץ, בחלוקה לפי שנים וימים."
+      content="ארכיון למוספי הארץ. פורטל לינקים של מוספי הארץ, בחלוקה לפי שנים, חודשים, וסופשי שבוע."
     />
     <meta
       name="keywords"
-      content="ארכיון, מוספי הארץ, הארץ, עיתון, מוסף, מוספים"
+      content="ארכיון, מוספי הארץ, הארץ, עיתון, מוסף, מוספים, מגזין, עיתון הארץ, ארכיון הארץ, ארכיון סוף השבוע, 20 שאלות, טיסות נכנסות/יוצאות, סופשבוע, מוסף עיתון הארץ, מוסף הארץ, סוף השבוע"
     />
     <meta name="author" content="ChefAharoni" />
     <!-- Specifies that search engines should index and follow the links on this page -->
@@ -47,6 +62,7 @@
       crossorigin="anonymous"
     ></script>
 
+
     <!-- Algolia search function -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
     <script>
@@ -58,6 +74,22 @@
       href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"
     />
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ארכיון מוספי הארץ",
+        "url": "https://haaretzarchive.tech/",
+        "logo": "https://raw.githubusercontent.com/ChefAharoni/HaaretzMusafim/main/assets/ArchiveLogo.svg",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "support@haaretzarchive.tech",
+          "contactType": "Customer Support"
+        }
+      }
+    </script>
+    
+    
     {% block head %} {% endblock %}
   </head>
   <nav class="navbar">
@@ -90,6 +122,7 @@
       <a href="{{ url_for('index') }}" class="button">
         <img
           src="https://raw.githubusercontent.com/ChefAharoni/HaaretzMusafim/main/assets/ArchiveLogo.svg"
+          alt="Haaretz Archive Website Logo"
         />
       </a>
     </div>
@@ -99,6 +132,20 @@
       function goBack() {
         window.history.back();
       }
+    </script>
+    <div id="bthn" lang="en"></div>
+    <script>
+      (function () {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "https://bringthemhomenow.net/1.0.8/hostages-ticker.js";
+        script.setAttribute(
+          "integrity",
+          "sha384-jQVW0E+wZK5Rv1fyN+b89m7cYY8txH4s3uShzHf1T51hdBTPo7yKL6Yizgr+Gp8C"
+        );
+        script.setAttribute("crossorigin", "anonymous");
+        document.getElementsByTagName("head")[0].appendChild(script);
+      })();
     </script>
     {% block body %} {% endblock %}
 
@@ -117,7 +164,7 @@
         subscription to Haaretz. This archive does not host or reproduce Haaretz
         content illegally.
       </p>
-      <p>&copy; 2024 ChefAharoni. All rights reserved.</p>
+      <p>&copy; 2025 ChefAharoni. All rights reserved.</p>
       <p><a href="mailto:support@haaretzarchive.tech">Contact Us</a></p>
       <p>
         <a href="https://github.com/ChefAharoni/HaaretzMusafim">
