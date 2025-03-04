@@ -13,7 +13,7 @@ Currently working on a search bar function from Algolia on a different branch - 
 **FrontEnd needed!**
 **Trying to add Algolia search function, no success so far.**
 
-Hosted at: https://haaretzarchive.tech
+Hosted at: https://haaretzarchive.com
 
 Built with [Flask](https://flask.palletsprojects.com/en/3.0.x/).
 
