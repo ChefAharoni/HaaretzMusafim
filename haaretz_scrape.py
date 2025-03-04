@@ -3,7 +3,7 @@ import requests
 import json
 from modules import group_dates
 import logging
-from modules.extensions import search_sort
+from modules.extensions import search_sort, update_algolia
 
 
 HAARETZ_SITEMAP = "https://www.haaretz.co.il/sitemap.xml"
@@ -189,8 +189,9 @@ def main():
     add_titles()
     print("Organizing articles for search DB...")
     search_sort.main()
-    print("Adding titles...")
-    add_titles()
+    print("Updating Algolia...")
+    update_algolia.main()
+    print("Algolia updated successfully.")
 
 
 if __name__ == "__main__":
