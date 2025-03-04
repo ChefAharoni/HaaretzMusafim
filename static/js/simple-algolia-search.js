@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // );
 
   let envConfig = {};
+  let searchClient;
+  let index;
 
   fetch("/env-config")
     .then((response) => response.json())
@@ -26,9 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
       envConfig.ALGOLIA_APP_ID,
       envConfig.ALGOLIA_SEARCH_API_KEY
     );
+    const index = searchClient.initIndex("HaaretzArchive Index");
   }
-
-  const index = searchClient.initIndex("HaaretzArchive Index");
 
   // Variables
   let resultsVisible = false;

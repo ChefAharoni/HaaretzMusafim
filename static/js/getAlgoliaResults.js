@@ -7,6 +7,7 @@ import "@algolia/autocomplete-theme-classic";
 // );
 
 let envConfig = {};
+let searchClient;
 
 fetch("/env-config")
   .then((response) => response.json())
