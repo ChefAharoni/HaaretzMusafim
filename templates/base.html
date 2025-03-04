@@ -27,11 +27,17 @@
       rel="icon"
       href="https://raw.githubusercontent.com/ChefAharoni/HaaretzMusafim/main/assets/ArchiveLogo2.ico"
     />
-    <!-- CSS for the Algolia search function -->
+
+    <!-- Algolia Search CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"
     />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/algolia-custom.css') }}"
+    />
+
     <meta
       name="description"
       content="ארכיון למוספי הארץ. פורטל לינקים של מוספי הארץ, בחלוקה לפי שנים, חודשים, וסופשי שבוע."
@@ -62,17 +68,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- Algolia search function -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
-    <script>
-      const { autocomplete } = window["@algolia/autocomplete-js"];
-    </script> -->
-    <!-- CSS Classic Theme  - Algolia -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"
-    />
-
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -88,15 +83,6 @@
       }
     </script>
 
-    <!-- Search scripts - Add at the end of your head section -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/algolia-custom.css') }}"
-    />
     {% block head %} {% endblock %}
   </head>
   <nav class="navbar">
@@ -124,8 +110,6 @@
       </ul>
     </div>
     <div>
-      <!-- <button onclick="goBack()" class="button">חזרה אחורה</button> -->
-      <!-- <a href="{{ url_for('index') }}" class="button">לעמוד הראשי</a> -->
       <a href="{{ url_for('index') }}" class="button">
         <img
           src="https://raw.githubusercontent.com/ChefAharoni/HaaretzMusafim/main/assets/ArchiveLogo.svg"
@@ -156,11 +140,6 @@
     </script>
     {% block body %} {% endblock %}
 
-    <script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-plugin-redirect-url"></script>
-    <script src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
-
     <footer>
       <p>
         <strong>Disclaimer:</strong> This archive is independently created and
@@ -178,12 +157,7 @@
           <img
             src="https://raw.githubusercontent.com/ChefAharoni/HaaretzMusafim/main/assets/github-mark/github-mark.svg"
             alt="GitHub Logo"
-            style="
-              height: 20px;
-              width: 20px;
-              /* vertical-align: middle; */
-              background: transparent;
-            "
+            style="height: 20px; width: 20px; background: transparent"
           />
           GitHub Repo
         </a>
@@ -200,32 +174,73 @@
       </p>
     </footer>
 
-    <!-- Scripts - Add at the end of your body before the closing </body> tag -->
+    <!-- Algolia Search Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js@1.8.3/dist/umd/index.production.min.js"></script>
     <script>
-      // Make these libraries available globally
-      const { autocomplete, getAlgoliaResults } =
-        window["@algolia/autocomplete-js"];
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize the Algolia client
+        const searchClient = algoliasearch(
+          "R0P8LNKXOK", // Your Algolia Application ID
+          "39fe5d71882d2469dc10a89f8823e6a0" // Your Algolia Search-Only API Key
+        );
+
+        // Initialize the autocomplete
+        window.algoliaAutocomplete.autocomplete({
+          container: "#autocomplete",
+          placeholder: "חיפוש מוספים...",
+          openOnFocus: true,
+          detachedMediaQuery: "none",
+          debug: true,
+          getSources({ query }) {
+            return [
+              {
+                sourceId: "haaretz-archive",
+                getItems() {
+                  return window.algoliaAutocomplete.getAlgoliaResults({
+                    searchClient,
+                    queries: [
+                      {
+                        indexName: "HaaretzArchive Index", // Your actual index name
+                        query,
+                        params: {
+                          hitsPerPage: 10,
+                        },
+                      },
+                    ],
+                  });
+                },
+                templates: {
+                  header() {
+                    return "תוצאות חיפוש";
+                  },
+                  item({ item, html }) {
+                    // Display the search result with title and optional date
+                    return html`
+                      <a href="${item.url || "#"}" class="aa-ItemLink">
+                        <div class="aa-ItemContent">
+                          <div class="aa-ItemTitle">
+                            ${item.title ||
+                            item.name ||
+                            item._highlightResult?.title?.value ||
+                            "כותרת לא זמינה"}
+                          </div>
+                          ${item.date
+                            ? html`<div class="aa-ItemDate">${item.date}</div>`
+                            : ""}
+                        </div>
+                      </a>
+                    `;
+                  },
+                  noResults() {
+                    return "לא נמצאו תוצאות";
+                  },
+                },
+              },
+            ];
+          },
+        });
+      });
     </script>
-    <script src="{{ url_for('static', filename='js/algolia-search.js') }}"></script>
   </body>
 </html>
-
-<!--
-            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-            src="../assets/github-mark/github-mark.png"
-            I tried to use the logo without the white background, didn't work for some reason.
-            <link rel="icon" type="image/svg+xml" href="/assets/ArchiveLogo.svg" />
-
-          <a href="https://www.patreon.com/ChefAharoni" target="_blank"
-        ><img
-          src="https://c5.patreon.com/external/logo/become_a_patron_button.png"
-          alt="Become a Patron!"
-          style="height: 40px !important; width: 170px !important;"></a>
-
-          
-            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-            --
-          />
--->
