@@ -24,11 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   function initAlgolia() {
-    const searchClient = algoliasearch(
+    searchClient = algoliasearch(
       envConfig.ALGOLIA_APP_ID,
       envConfig.ALGOLIA_SEARCH_API_KEY
     );
-    const index = searchClient.initIndex("HaaretzArchive Index");
+    index = searchClient.initIndex("HaaretzArchive Index");
   }
 
   // Variables

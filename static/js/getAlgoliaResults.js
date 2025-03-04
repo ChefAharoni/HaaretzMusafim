@@ -17,7 +17,7 @@ fetch("/env-config")
   });
 
 function initAlgolia() {
-  const searchClient = algoliasearch(
+  searchClient = algoliasearch(
     envConfig.ALGOLIA_APP_ID,
     envConfig.ALGOLIA_SEARCH_API_KEY
   );
