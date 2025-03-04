@@ -1,0 +1,68 @@
+/* Custom styles for Algolia search */
+.search_container {
+  max-width: 300px;
+  width: 100%;
+  margin: 0 auto;
+  direction: rtl;
+}
+
+/* Match your site's theme */
+.aa-Form {
+  border: 1px solid #2596be;
+  border-radius: 5px;
+  background-color: #333;
+}
+
+.aa-Input {
+  color: white !important;
+  direction: rtl;
+}
+
+.aa-Item {
+  direction: rtl;
+  text-align: right;
+}
+
+.aa-Panel {
+  direction: rtl;
+  text-align: right;
+  background-color: #333;
+  color: white;
+  border: 1px solid #2596be;
+}
+
+.aa-ItemLink {
+  color: #2596be !important;
+  text-decoration: none;
+  display: block;
+  padding: 8px;
+}
+
+.aa-ItemLink:hover {
+  background-color: #444;
+}
+
+.aa-ItemTitle {
+  color: #2596be;
+  font-weight: bold;
+}
+
+.aa-ItemDate {
+  font-size: 0.8em;
+  color: #999;
+}
+
+.aa-DetachedContainer {
+  direction: rtl;
+}
+
+.aa-DetachedSearchButton {
+  background-color: #272727;
+  border: 1px solid #2596be;
+  color: #2596be;
+}
+
+/* Add placeholder text color */
+.aa-Input::placeholder {
+  color: #999;
+}

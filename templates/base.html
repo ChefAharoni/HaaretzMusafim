@@ -62,7 +62,6 @@
       crossorigin="anonymous"
     ></script>
 
-
     <!-- Algolia search function -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
     <script>
@@ -88,8 +87,16 @@
         }
       }
     </script>
-    
-    
+
+    <!-- Search scripts - Add at the end of your head section -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/algolia-custom.css') }}"
+    />
     {% block head %} {% endblock %}
   </head>
   <nav class="navbar">
@@ -192,6 +199,16 @@
         <a href="/privacy_policy">Privacy Policy</a>
       </p>
     </footer>
+
+    <!-- Scripts - Add at the end of your body before the closing </body> tag -->
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
+    <script>
+      // Make these libraries available globally
+      const { autocomplete, getAlgoliaResults } =
+        window["@algolia/autocomplete-js"];
+    </script>
+    <script src="{{ url_for('static', filename='js/algolia-search.js') }}"></script>
   </body>
 </html>
 
