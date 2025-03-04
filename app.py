@@ -1,4 +1,4 @@
-from flask import Flask, render_template, 
+from flask import Flask, render_template
 from collections import defaultdict
 from modules import dates_segments
 import haaretz_scrape
