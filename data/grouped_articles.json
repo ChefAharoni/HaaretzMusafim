@@ -22093,5 +22093,14 @@
     "https://www.haaretz.co.il/sitemap-202512.xml": {},
     "https://www.haaretz.co.il/sitemap-202601.xml": {},
     "https://www.haaretz.co.il/sitemap-202602.xml": {},
-    "https://www.haaretz.co.il/sitemap-202603.xml": {}
+    "https://www.haaretz.co.il/sitemap-202603.xml": {},
+    "https://www.haaretz.co.il/sitemap-202604.xml": {
+        "2026-04-04": [
+            "https://www.haaretz.co.il/magazine/quote/2026-04-01/ty-article-quotes/.highlight/0000019d-4837-d905-a39d-d8b7bb7c0000",
+            "https://www.haaretz.co.il/magazine/panim/2026-04-01/ty-article-face/.highlight/0000019d-47f1-d905-a39d-d7f784d90000",
+            "https://www.haaretz.co.il/magazine/20questions/2026-04-01/ty-article-20q/.highlight/0000019d-3ee6-d143-a1fd-3ef630960000",
+            "https://www.haaretz.co.il/magazine/20questions-kids/2026-04-01/ty-article-20q/.highlight/0000019d-47c6-d068-a19f-4fd640eb0000",
+            "https://www.haaretz.co.il/magazine/ratingcommittee/2026-04-01/ty-article-midrug/.highlight/0000019d-4840-d759-ab9d-79d9a8120000"
+        ]
+    }
 }
