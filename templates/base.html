@@ -151,7 +151,9 @@
         subscription to Haaretz. This archive does not host or reproduce Haaretz
         content illegally.
       </p>
-      <p>&copy; 2025 ChefAharoni. All rights reserved.</p>
+      <p>
+        &copy; <span id="current-year"></span> ChefAharoni. All rights reserved.
+      </p>
       <p><a href="mailto:support@haaretzarchive.com">Contact Us</a></p>
       <p>
         <a href="https://github.com/ChefAharoni/HaaretzMusafim">
@@ -174,6 +176,17 @@
         <a href="/privacy_policy">Privacy Policy</a>
       </p>
     </footer>
+
+    <script>
+      (function () {
+        try {
+          var el = document.getElementById("current-year");
+          if (el) el.textContent = new Date().getFullYear();
+        } catch (e) {
+          /* noop */
+        }
+      })();
+    </script>
 
     <!-- Algolia search scripts -->
     <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch.umd.min.js"></script>
