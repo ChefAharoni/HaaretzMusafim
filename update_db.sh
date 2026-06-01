@@ -1,4 +1,5 @@
 #!/bin/bash
+source /home/ec2-user/site/HaaretzMusafim/haaretzENV/bin/activate
 git pull
 if [ $? -ne 0 ]; then
     echo "Git pull failed, exiting..."
