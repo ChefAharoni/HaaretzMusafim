@@ -3,7 +3,10 @@ import requests
 import json
 from modules import group_dates
 import logging
+from dotenv import load_dotenv
 from modules.extensions import search_sort, update_algolia
+
+load_dotenv()
 
 
 HAARETZ_SITEMAP = "https://www.haaretz.co.il/sitemap.xml"
