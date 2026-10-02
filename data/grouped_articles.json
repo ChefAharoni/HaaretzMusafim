@@ -23548,5 +23548,24 @@
         ]
     },
     "https://www.haaretz.co.il/sitemap-202608.xml": {},
-    "https://www.haaretz.co.il/sitemap-202609.xml": {}
+    "https://www.haaretz.co.il/sitemap-202609.xml": {},
+    "https://www.haaretz.co.il/sitemap-202610.xml": {
+        "2026-10-03": [
+            "https://www.haaretz.co.il/magazine/flights/2026-10-01/ty-article-magazine/.highlight/000001a0-f1e2-dfbb-afa4-f3f2ab8e0000",
+            "https://www.haaretz.co.il/magazine/2026-10-01/ty-article-magazine/.highlight/000001a0-f23d-d9ab-abfd-f7bdc1b00000",
+            "https://www.haaretz.co.il/magazine/haaretzlogicpuzzle/2026-10-01/ty-article-magazine/.premium/000001a0-f671-d9ab-abfd-f7f1d5730000",
+            "https://www.haaretz.co.il/magazine/quote/2026-10-01/ty-article-quotes/.highlight/000001a0-f314-de31-a7f0-fb9f5ee90000",
+            "https://www.haaretz.co.il/magazine/mishpaha-boharim/2026-10-01/ty-article-face/.highlight/000001a0-f29c-de31-a7f0-fa9ffdff0000",
+            "https://www.haaretz.co.il/magazine/panim/2026-10-01/ty-article-face/.highlight/000001a0-f2c1-d272-adf6-ffc7d2b10000",
+            "https://www.haaretz.co.il/magazine/20questions/2026-10-01/ty-article-20q/.highlight/000001a0-f2d0-dfbb-afa4-f3d0d0450000",
+            "https://www.haaretz.co.il/magazine/20questions-kids/2026-10-01/ty-article-20q/.highlight/000001a0-f2e7-d9ab-abfd-f7e70a440000",
+            "https://www.haaretz.co.il/magazine/ratingcommittee/2026-10-01/ty-article-midrug/.highlight/000001a0-f302-de31-a7f0-fb9f8f9c0000",
+            "https://www.haaretz.co.il/magazine/letters/2026-10-01/ty-article/.highlight/000001a0-f1ec-dfbb-afa4-f3fc78300000",
+            "https://www.haaretz.co.il/magazine/on-the-line/2026-10-01/ty-article/.highlight/000001a0-f25c-dfbb-afa4-f35c75ae0000",
+            "https://www.haaretz.co.il/magazine/the-edge/2026-10-01/ty-article/.highlight/000001a0-f650-dbb2-a9f8-ffdbcb6e0000",
+            "https://www.haaretz.co.il/magazine/the-edge/2026-10-01/ty-article/.highlight/000001a0-f677-d272-adf6-fff7f3d20000",
+            "https://www.haaretz.co.il/magazine/the-edge/2026-10-01/ty-article/.highlight/000001a0-f692-de31-a7f0-fe9fb8860000",
+            "https://www.haaretz.co.il/magazine/obit/2026-10-01/ty-article/000001a0-f70b-d9ab-abfd-f7ab543a0000"
+        ]
+    }
 }
