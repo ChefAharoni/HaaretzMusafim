@@ -136,8 +136,17 @@ def update_algolia_index(
             }
         )
 
-        # Index records in batches
         total_records = len(records)
+
+        # One-off full reindex: atomically replaces the index so records not in
+        # the source data (stale duplicates) are removed.
+        if os.getenv("ALGOLIA_FULL_REINDEX") == "1":
+            logger.info(f"Full reindex of {total_records} records (replace_all_objects)")
+            index.replace_all_objects(records, {"safe": True})
+            logger.info(f"Successfully replaced index with {total_records} records")
+            return True
+
+        # Index records in batches
         for i in range(0, total_records, batch_size):
             batch = records[i : i + batch_size]
             index.save_objects(batch).wait()

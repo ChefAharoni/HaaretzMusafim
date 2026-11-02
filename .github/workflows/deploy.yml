@@ -5,6 +5,10 @@ on:
     - cron: "0 21 1 * *" # 00:00 TLV time on the first day of every month
   workflow_dispatch:
     inputs:
+      full_reindex:
+        description: "Replace the whole Algolia index (removes stale records). Set to 1 to enable."
+        required: false
+        default: ""
       prefix:
         description: "URL path prefix for a preview build (e.g. /HaaretzMusafim). Leave empty for production."
         required: false
@@ -49,6 +53,7 @@ jobs:
         if: github.event_name != 'push'
         env:
           ALGOLIA_APP_KEY: ${{ secrets.ALGOLIA_APP_KEY }}
+          ALGOLIA_FULL_REINDEX: ${{ github.event.inputs.full_reindex }}
         run: python haaretz_scrape.py
 
       - name: Commit and push data changes
