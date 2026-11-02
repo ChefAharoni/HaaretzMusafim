@@ -14,7 +14,8 @@ def get_dates():
     for months, weekends in articles.items():
         for weekend in weekends:
             l_weekends.append(weekend)
-    return l_weekends
+    # A date can appear under two month sitemaps; keep each date once.
+    return list(dict.fromkeys(l_weekends))
 
 
 def group_dates():

@@ -81,6 +81,22 @@ def inject_segments():
     return {"segments": grouped_dates.keys(), "segment_years": segment_years}
 
 
+@app.context_processor
+def inject_algolia_config():
+    """Search-only Algolia credentials (public by design). Never the admin key."""
+    return {
+        "algolia_config": {
+            "ALGOLIA_APP_ID": os.getenv("ALGOLIA_APP_ID"),
+            "ALGOLIA_SEARCH_API_KEY": os.getenv("ALGOLIA_SEARCH_API_KEY"),
+        }
+    }
+
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template("404.html"), 404
+
+
 @app.route("/ads")
 def support_us():
     return render_template("ads.html")

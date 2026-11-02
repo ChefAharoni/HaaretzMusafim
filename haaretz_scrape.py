@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+import sys
 from modules import group_dates
 import logging
 from dotenv import load_dotenv
@@ -193,7 +194,9 @@ def main():
     print("Organizing articles for search DB...")
     search_sort.main()
     print("Updating Algolia...")
-    update_algolia.main()
+    if not update_algolia.main():
+        print("Algolia update FAILED.")
+        sys.exit(1)
     print("Algolia updated successfully.")
 
 

@@ -6,24 +6,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchResults = document.getElementById("search-results");
   const searchButton = document.getElementById("search-button");
 
-  let envConfig = {};
+  // Search-only credentials are rendered into the page (see base.html).
+  const envConfig = window.ALGOLIA_CONFIG || {};
   let searchClient;
   let index;
 
-  fetch("/env-config")
-    .then((response) => response.json())
-    .then((data) => {
-      envConfig = data;
-      initAlgolia();
-    });
-
   function initAlgolia() {
+    if (!envConfig.ALGOLIA_APP_ID || !envConfig.ALGOLIA_SEARCH_API_KEY) {
+      console.error("Algolia search is not configured");
+      return;
+    }
     searchClient = algoliasearch(
       envConfig.ALGOLIA_APP_ID,
       envConfig.ALGOLIA_SEARCH_API_KEY
     );
     index = searchClient.initIndex("HaaretzArchive Index");
   }
+  initAlgolia();
 
   // Variables
   let resultsVisible = false;
@@ -37,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
       hideResults();
       return;
     }
+
+    if (!index) return;
 
     index
       .search(query, {

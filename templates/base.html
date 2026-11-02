@@ -172,8 +172,8 @@
           style="height: 40px !important; width: 170px !important"
       /></a>
       <p>
-        <a href="/ads">Ads</a> |
-        <a href="/privacy_policy">Privacy Policy</a>
+        <a href="{{ url_for('support_us') }}">Ads</a> |
+        <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>
       </p>
     </footer>
 
@@ -188,7 +188,10 @@
       })();
     </script>
 
-    <!-- Algolia search scripts -->
+    <!-- Algolia search scripts (search-only key, public by design) -->
+    <script>
+      window.ALGOLIA_CONFIG = {{ algolia_config | tojson }};
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch.umd.min.js"></script>
     <script src="{{ url_for('static', filename='js/simple-algolia-search.js') }}"></script>
   </body>

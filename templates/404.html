@@ -1,0 +1,8 @@
+{% extends "base.html" %} {% block head %}
+<title>העמוד לא נמצא</title>
+{% endblock %} {% block body %}
+<div class="error_message">
+  <h3>מצטערים, העמוד שחיפשתם לא נמצא.</h3>
+  <p><a href="{{ url_for('index') }}">חזרה לעמוד הראשי</a></p>
+</div>
+{% endblock %}
