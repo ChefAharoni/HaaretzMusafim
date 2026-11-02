@@ -28,8 +28,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     env:
-      ALGOLIA_APP_ID: ${{ vars.ALGOLIA_APP_ID }}
-      ALGOLIA_SEARCH_API_KEY: ${{ vars.ALGOLIA_SEARCH_API_KEY }}
+      ALGOLIA_APP_ID: ${{ vars.ALGOLIA_APP_ID || secrets.ALGOLIA_APP_ID }}
+      ALGOLIA_SEARCH_API_KEY: ${{ vars.ALGOLIA_SEARCH_API_KEY || secrets.ALGOLIA_SEARCH_API_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
